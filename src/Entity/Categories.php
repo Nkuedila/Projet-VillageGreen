@@ -23,8 +23,8 @@ class Categories
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?int $categoryOrder = null;
+    /* #[ORM\Column]
+    private ?int $categoryOrder = null; */
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     private ?self $parent = null;
@@ -75,7 +75,7 @@ class Categories
 
         return $this;
     }
-
+    /* 
     public function getCategoryOrder(): ?int
     {
         return $this->categoryOrder;
@@ -86,7 +86,7 @@ class Categories
         $this->categoryOrder = $categoryOrder;
 
         return $this;
-    }
+    } */
 
     public function getParent(): ?self
     {
