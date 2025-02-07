@@ -267,11 +267,13 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
 
         // Corriger la référence du fournisseur pour utiliser le format correct
         $fournisseur = $this->getReference($fournisseurReference, Fournisseur::class); // Le format du fournisseur est déjà correct, donc on l'utilise directement
-        dump($fournisseur->getId());
+        // dump($fournisseur->getId());
 
 
         // MATTER ???????
-        $produit->setReferenceFournisseur($fournisseur->getId());
+        $produit->setFournisseur($fournisseur);
+        
+        $produit->setReferenceFournisseur("");
 
         // Enregistrer la référence du produit pour réutilisation
         $this->setReference('prod-' . strtolower(str_replace(' ', '-', $nom)), $produit);

@@ -10,7 +10,7 @@ class FournisseursFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $fournisseur = [
+        $fournisseurs = [
             ['THOMANN 1', 'Burgebrach, Allemagne', '+33-176-548-596'],
             ['YAMAHA 2', 'Tokyo, Japon', '+81 3-1234-5678'],
             ['WOODBRASS 3', 'saint-herlain, France', '01 86 65 03 03'],
@@ -18,7 +18,7 @@ class FournisseursFixtures extends Fixture
 
         ];
 
-        foreach ($fournisseur as $index => [$nom, $adresse, $telephone]) {
+        foreach ($fournisseurs as $index => [$nom, $adresse, $telephone]) {
             $fournisseur = new Fournisseur();
             $fournisseur->setNom($nom);
             $fournisseur->setAdresse($adresse);

@@ -23,16 +23,17 @@ class Categories
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    /* #[ORM\Column]
-    private ?int $categoryOrder = null; */
+    #[ORM\Column]
+    private ?int $categoryCommande = null; 
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    #[ORM\JoinColumn(name:'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?self $parent = null;
 
     /**
      * @var Collection<int, self>
      */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'parent')]
+    #[ORM\OneToMany(targetEntity: Categories::class, mappedBy: 'parent')]
     private Collection $categories;
 
     /**
@@ -75,18 +76,18 @@ class Categories
 
         return $this;
     }
-    /* 
-    public function getCategoryOrder(): ?int
+    
+    public function getCategoryCommande(): ?int
     {
-        return $this->categoryOrder;
+        return $this->categoryCommande;
     }
 
-    public function setCategoryOrder(int $categoryOrder): static
+    public function setCategoryCommande(int $categoryCommande): self
     {
-        $this->categoryOrder = $categoryOrder;
+        $this->categoryCommande = $categoryCommande;
 
         return $this;
-    } */
+    } 
 
     public function getParent(): ?self
     {
@@ -100,8 +101,9 @@ class Categories
         return $this;
     }
 
-    /**
-     * @return Collection<int, self>
+    
+     /**
+      *  @return Collection<int, self>
      */
     public function getCategories(): Collection
     {
