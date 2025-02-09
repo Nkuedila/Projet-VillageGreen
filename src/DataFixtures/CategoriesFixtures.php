@@ -68,7 +68,7 @@ class CategoriesFixtures extends Fixture
 
 
 
-        $parent = $this->createCategory('Instruments à Vent', 'instumentvent.jpg', null, $manager);
+        $parent = $this->createCategory('Instruments à Vent', 'instrumentvent.jpg', null, $manager);
 
         // Sous-catégories associées à la catégorie parente
 
