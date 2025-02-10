@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Categories;
+use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -16,17 +17,12 @@ class CategoriesController extends AbstractController
     public function list(Categories $category): Response
     {
 
-        // on va chercher la list de la produits de la categories
+        dump($category);
+        // on va chercher la liste de la produits de la categories
 
-        $products = $category->getProducts();
-
-
-
-
-        return $this->render('categories/list.html.twig', compact('category', 'products'));
+        $produits = $category->getProduits();
 
 
+        return $this->render('categories/list.html.twig', compact('category', 'produits'));
     }
-
-
 }

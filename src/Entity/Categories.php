@@ -24,10 +24,10 @@ class Categories
     private ?string $image = null;
 
     #[ORM\Column]
-    private ?int $categoryCommande = null; 
+    private ?int $categoryCommande = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
-    #[ORM\JoinColumn(name:'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
     private ?self $parent = null;
 
     /**
@@ -76,7 +76,7 @@ class Categories
 
         return $this;
     }
-    
+
     public function getCategoryCommande(): ?int
     {
         return $this->categoryCommande;
@@ -87,7 +87,7 @@ class Categories
         $this->categoryCommande = $categoryCommande;
 
         return $this;
-    } 
+    }
 
     public function getParent(): ?self
     {
@@ -101,9 +101,9 @@ class Categories
         return $this;
     }
 
-    
-     /**
-      *  @return Collection<int, self>
+
+    /**
+     *  @return Collection<int, self>
      */
     public function getCategories(): Collection
     {

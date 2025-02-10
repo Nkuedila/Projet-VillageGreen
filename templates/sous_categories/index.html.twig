@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <main class="container mt-5">
+    <main class="container ">
         <section class="row text-center">
             <div class="col-12 mb-4">
                 <h1 class="display-4 text-primary fw-bold">Centre de musique MASAMBUKIDI</h1>
@@ -14,12 +14,12 @@
 
             <h2 class="mb-5">{{ category.nom }}</h2> <!-- Subheading for category name -->
 
-            <div class="category-container">
+            <div class="container">
                 {% for c in category.categories %}
-                    <div class="category-card">
-                        <div class="image-container overflow-hidden">
-{#                             <a href="{{ path('categories_list', {slug: c.slug}) }}">
- #}                                <img src="{{ asset('uploads/categories/sous/' ~ c.image) }}" alt="{{ c.nom }}" style="width: 200px;" />
+                    <div class="card-body">
+                        <div class="card-img-top">
+                           <a href="{{ path('categories_list', {slug: c.slug}) }}">
+                                 <img src="{{ asset('uploads/categories/sous/' ~ c.image) }}" alt="{{ c.nom }}" style="width: 200px;" />
                             </a>
                         </div>
                      <div class="card-body text-center">
