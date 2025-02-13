@@ -11,70 +11,26 @@
     
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="{{ path('main') }}">Accueil</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Categories</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                  </li>
-                </ul>
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  {% if app.user %}
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Me déconnecter</a>
-                    </li>
-                 {% else %}
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">M'inscrire</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Me connecter</a>
-                  </li>
-                  {% endif %}
-                </ul>
-        
-              </div>
-            </div>
-          </nav>
+
+    {% include "_partials/_nav.html.twig"  %} 
+
+
+    <section class="hero-section position-relative text-center">
+      <img src="{{ asset('uploads/bg5.jpg') }}" alt="Background Image" class="img-fluid w-100" style="height: 400px;">
+      
+      <!-- Search Bar Inside Image -->
+     {#  <div class="position-absolute top-50 start-50 translate-middle" style="width: 40%;">
+          <form method="get" action="{{ path('products_search') }}">
+              <input class="form-control" type="search" name="search" placeholder="Search for products..." aria-label="Search">
+          </form>
+      </div> #}
+  </section>
+
+
         {% block body %}{% endblock %}
-            <footer class="container-fluid bg-light">
-                <div class="row">
-                  <section class="col">
-                  colonne 1
-                  </section>
-                  <section class="col">
-                  colonne 2
-                  </section>
-                  <section class="col">
-                  colonne 3
-                  </section>
-                </div>
+
+          {% include "_partials/_footer.html.twig"  %} 
+
             
-              </footer>
     </body>
 </html>
