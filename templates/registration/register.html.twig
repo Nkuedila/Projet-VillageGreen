@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<section class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Inscription</h1>
+
+            {{ form_start(registrationForm) }}
+                <fieldset class="mb-3">
+                    <legend>Mon Identité</legend>
+                    {{ form_row(registrationForm.nom) }}
+                    {{ form_row(registrationForm.prenom) }}
+                    {{ form_row(registrationForm.email) }}
+                </fieldset>
+                
+                <fieldset class="mb-3">
+                    <legend>Mes Coordonnées</legend>
+                    {{ form_row(registrationForm.adresse) }}
+                    {{ form_row(registrationForm.codepostal) }}
+                    {{ form_row(registrationForm.ville) }}
+                    {{ form_row(registrationForm.userstype) }}
+                     <!--Numero SIRET (hidden unless user is "professionnel") -->
+                <div id="numeroSiretField" style="display: none;">
+                    {{ form_row(registrationForm.numeroSiret) }}
+                </div>
+                </fieldset>    
+
+                {{ form_row(registrationForm.password) }}
+
+               
+
+                <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+                <a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
+                {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let userstypeField = document.querySelector('[name="registration_form[userstype]"]');
+    let numeroSiretField = document.getElementById('numeroSiretField');
+
+    function toggleNumeroSiret() {
+        console.log("toggle...")
+        let selection = userstypeField.options[userstypeField.value]
+        console.dir(selection)
+        if (selection && selection.text === 'Professionnel') {
+            numeroSiretField.style.display = 'block';
+        } else {
+            numeroSiretField.style.display = 'none';
+        }
+    }
+
+    // Run on page load
+    toggleNumeroSiret();
+
+    // Run when user changes selection
+    userstypeField.addEventListener('change', toggleNumeroSiret);
+});
+</script>
+
+{% endblock %}

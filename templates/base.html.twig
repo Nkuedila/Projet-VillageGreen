@@ -46,14 +46,14 @@
                       <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Me déconnecter</a>
+                      <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Me déconnecter</a>
                     </li>
                  {% else %}
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">M'inscrire</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">M'inscrire</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Me connecter</a>
+                    <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Me connecter</a>
                   </li>
                   {% endif %}
                 </ul>
