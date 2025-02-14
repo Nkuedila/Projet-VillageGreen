@@ -23,7 +23,7 @@ security:
         # target: app_any_route
 
       remember_me:
-        secret: '%kernel.secret%'
+        secret: "%kernel.secret%"
         lifetime: 604800
         path: /
         always_remember_me: true
@@ -37,8 +37,23 @@ security:
   # Easy way to control access for large sections of your site
   # Note: Only the *first* access control that matches will be used
   access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+    - { path: ^/admin/utilisateurs, roles: [ROLE_ADMIN] }
+    - {
+        path: ^/admin,
+        roles:
+          [ROLE_COMMERCIAL, ROLE_CLIENT_PARTICULIER, ROLE_CLIENT_PROFESSIONEL],
+      }
+    - { path: ^/profil, roles: ROLE_USER }
+
+  role_hierarchy:
+    ROLE_COMMERCIAL: ROLE_USER
+    ROLE_CLIENT_PARTICULIER: ROLE_USER
+    ROLE_CLIENT_PROFESSIONEL: ROLE_USER
+    ROLE_ADMIN:
+      - ROLE_COMMERCIAL
+      - ROLE_CLIENT_PARTICULIER
+      - ROLE_CLIENT_PROFESSIONEL
+    ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 when@test:
   security:

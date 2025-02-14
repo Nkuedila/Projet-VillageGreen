@@ -61,7 +61,6 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $commandes;
 
     #[ORM\ManyToOne(inversedBy: 'users')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?UsersType $userstype = null;
 
     #[ORM\Column(nullable: true)]
