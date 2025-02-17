@@ -6,13 +6,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+#[Route('/profil', name: 'app_profile')]
+
+
 final class ProfileController extends AbstractController
 {
-    #[Route('/profile', name: 'app_profile')]
+    #[Route('/', name: 'index')]
     public function index(): Response
     {
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'Profile de l\'utilisateur',
+        ]);
+    }
+
+
+    #[Route('/commandes', name: 'commandes')]
+    public function commandes(): Response
+    {
+        return $this->render('profile/index.html.twig', [
+            'controller_name' => 'commandes de l\'utilisateur',
         ]);
     }
 }
