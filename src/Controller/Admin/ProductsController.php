@@ -27,14 +27,22 @@ class ProductsController extends AbstractController
     #[Route('/ajout', name: 'app_products_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // on crée un nouveau produi
         $produit = new Produits();
+
+        // on crée le formulaire
         $form = $this->createForm(ProduitsType::class, $produit);
+
+        // on va traiter la requête du formulaire
         $form->handleRequest($request);
 
+        // on vérifie si le formulaire est soumis et valide
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($produit);
             $entityManager->flush();
 
+            /*             $this->addFlash();
+ */
             $this->addFlash('success', 'Produit ajouté avec succèc');
 
             return $this->redirectToRoute('admin_produits_index', [], Response::HTTP_SEE_OTHER);

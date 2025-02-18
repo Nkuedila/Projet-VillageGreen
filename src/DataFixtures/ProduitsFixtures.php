@@ -166,10 +166,10 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
 
             // Méditations & Thérapie Musicale
             ['Handpans & Steel Tongue Drums', 'de qualité supérieure.', 47000, 20, 'MéditationsThérapieMusicale1.jpg', 'category_traditionnel', 'fournisseur_3'],
-            ['Energy Chimes', 'de qualité supérieure.', 40000, 20, 'MéditationsThérapieMusicale.jpg', 'category_traditionnel', 'fournisseur_3'],
-            ['Wind Gongs', 'de qualité supérieure.', 41000, 20, 'MéditationsThérapieMusicale.jpg', 'category_traditionnel', 'fournisseur_3'],
-            ['Tam Tam/Gongs', 'de qualité supérieure.', 50000, 20, 'MéditationsThérapieMusicale.jpg', 'category_traditionnel', 'fournisseur_3'],
-            ['Bols Chantants', 'de qualité supérieure.', 40000, 20, 'MéditationsThérapieMusicale.jpg', 'category_traditionnel', 'fournisseur_3'],
+            ['Energy Chimes', 'de qualité supérieure.', 40000, 20, 'MéditationsThérapieMusicale2.jpg', 'category_traditionnel', 'fournisseur_3'],
+            ['Wind Gongs', 'de qualité supérieure.', 41000, 20, 'MéditationsThérapieMusicale3.jpg', 'category_traditionnel', 'fournisseur_3'],
+            ['Tam Tam/Gongs', 'de qualité supérieure.', 50000, 20, 'MéditationsThérapieMusicale4.jpg', 'category_traditionnel', 'fournisseur_3'],
+            ['Bols Chantants', 'de qualité supérieure.', 40000, 20, 'MéditationsThérapieMusicale5.jpg', 'category_traditionnel', 'fournisseur_3'],
 
 
 
