@@ -54,7 +54,7 @@ class UsersVoter extends Voter
         }
 
         if ($this->security->isGranted('ROLE_CLIENT_PROFESSIONEL')) {
-            if (in_array($attribute, [self::EDIT], true) && $subject->getNumeroSiret()) {
+            if (in_array($attribute, [self::ADD, self::EDIT], true) && $subject->getNumeroSiret()) {
                 $this->logger->info("Access granted: ROLE_CLIENT_PROFESSIONEL can {$attribute} a user with numeroSiret.");
                 return true;
             }

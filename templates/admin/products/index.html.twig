@@ -3,18 +3,20 @@
 {% block title %}Produits index{% endblock %}
 
 {% block body %}
-    <h1>Produits index</h1>
+{#     {% include "_partials/_adminnav.html.twig"  %} 
+ #}
+    <h1>Liste des produits</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Image</th>
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Prix</th>
                 <th>Stock</th>
                 <th>Reference_fournisseur</th>
-                <th>Image</th>
                 <th>Created_at</th>
                 <th>Slug</th>
                 <th>actions</th>
@@ -24,18 +26,19 @@
         {% for produit in produits %}
             <tr>
                 <td>{{ produit.id }}</td>
+                <td><img class="card-img-top" src="{{ asset('uploads/produits/' ~ produit.image) }}" alt=" {{ produit.nom }} "
+                style="width:100%"> 
                 <td>{{ produit.nom }}</td>
                 <td>{{ produit.description }}</td>
                 <td>{{ produit.prix / 100 }}</td>
                 <td>{{ produit.stock }}</td>
                 <td>{{ produit.referenceFournisseur }}</td>
-                <td><img class="card-img-top" src="{{ asset('uploads/produits/' ~ produit.image) }}" alt=" {{ produit.nom }} "
-                style="width:100%">                
+                               
                 <td>{{ produit.createdAt ? produit.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ produit.slug }}</td>
                 <td>
-                    <a href="{{ path('admin_produits_app_products_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('admin_produits_app_products_edit', {'id': produit.id}) }}">edit</a>
+                    <a href="{{ path('admin_produits_app_products_show', {'id': produit.id}) }}"class="btn btn-success">voir</a>
+                    <a href="{{ path('admin_produits_app_products_edit', {'id': produit.id}) }}"class="btn btn-success">éditer</a>
                 </td>
             </tr>
         {% else %}

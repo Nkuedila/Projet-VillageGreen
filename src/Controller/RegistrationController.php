@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\RegistrationFormType;
 use App\Security\UsersAuthenticator;
+use App\Service\SendMailService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher,
         UserAuthenticatorInterface $userAuthenticator,
         UsersAuthenticator $authenticator,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager, SendMailService $mail
     ): Response {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -46,13 +47,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // on envoie le mail 
-            /* $mail->send(
+            $mail->send(
                 'no-replay@monsite.net',
                 $user->getEmail(),
                 'Inscription de votre compte sur le site Village Green',
                 'register',
                 compact('user')
-            ); */
+            ); 
 
 
 
