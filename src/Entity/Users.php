@@ -276,4 +276,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+  /*   public function canModify(Users $user):bool{
+        return false;
+    } */
 }

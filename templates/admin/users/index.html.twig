@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Users index{% endblock %}
+{% block title %}utilisateurs index{% endblock %}
 
 {% block body %}
     <h1>Liste des utilisateurs</h1>
@@ -11,8 +11,8 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
+{#                 <th>Password</th>
+ #}                <th>Nom</th>
                 <th>Prenom</th>
                 <th>Adresse</th>
                 <th>Codepostal</th>
@@ -24,12 +24,21 @@
         </thead>
         <tbody>
         {% for user in users %}
+{#             {{dump([user.id!=app.user.id, user])}}
+ #}            {% if 'ROLE_ADMIN' in app.user.roles or 
+            'ROLE_ADMIN' not in user.roles and 
+            'ROLE_COMMERCIAL' not in user.roles and 
+                (app.user.id != user.id) and(
+            ('ROLE_CLIENT_PROFESSIONEL' in app.user.roles and user.numeroSiret is not empty) or
+            ('ROLE_CLIENT_PARTICULIER' in app.user.roles and user.numeroSiret is empty)
+            ) %}
+                
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.nom }}</td>
+{#                 <td>{{ user.password }}</td>
+ #}                <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.adresse }}</td>
                 <td>{{ user.codepostal }}</td>
@@ -37,10 +46,15 @@
                 <td>{{ user.numeroSiret }}</td>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_users_show', {'id': user.id}) }}">voir</a>
-                    <a href="{{ path('app_users_edit', {'id': user.id}) }}">créer</a>
+                    <a href="{{ path('app_users_show', {'id': user.id}) }}"class="btn btn-success">voir</a>
+{#                     {% if app.user.canModify(user) %}
+ #}                        <a href="{{ path('app_users_edit', {'id': user.id}) }}"class="btn btn-primary">edité</a>    
+{#                     {% endif %}
+ #}                    
                 </td>
             </tr>
+            {% endif %}
+
         {% else %}
             <tr>
                 <td colspan="12">no records found</td>
@@ -49,5 +63,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_users_new') }}">Create new</a>
+    <a href="{{ path('app_users_new') }}"class="btn btn-warning">Create new</a>
 {% endblock %}

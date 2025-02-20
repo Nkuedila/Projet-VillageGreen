@@ -22,6 +22,12 @@
             {% for categorie in categories %}
                 <tr>
                     <td>{{ categorie.id }}</td>
+                    <td><img class="card-img-top" src="{{ asset('uploads/categories/' ~ categorie.image) }}" alt=" {{ categorie.nom }} "
+                    style="width:100%"></td>
+                    <td><img class="card-img-top" src="{{ asset('uploads/categories/sous/' ~ categorie.image) }}" alt=" {{ categorie.nom }} "
+                    style="width:100%"></td>
+
+
                     <td>{{ categorie.nom }}</td>
                     <td>
                         {% if categorie.parent is not null %}
@@ -30,6 +36,7 @@
                     </td>
                     <td>{{ categorie.slug }}</td>
                     <td>{{ categorie.categoryCommande }}</td>
+                   
                 </tr>
             {% endfor %}
         </tbody>

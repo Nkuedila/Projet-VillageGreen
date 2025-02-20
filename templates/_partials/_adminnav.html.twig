@@ -1,4 +1,5 @@
 <aside class="col-3 border border-light bg-white p-2">
+    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_COMMERCIAL') %}
     <article class="card mb-3">
         <div class="card-header">
             catégorie
@@ -19,6 +20,8 @@
    
     </div>
 </article>  
+{% endif %}
+{% if is_granted('ROLE_ADMIN') or is_granted('ROLE_CLIENT_PARTICULIER') or is_granted('ROLE_CLIENT_PROFESSIONEL') %}
 <article class="card mb-3">
     <div class="card-header">
         Utilisateurs
@@ -27,6 +30,7 @@
       <p><a href="{{ path('app_users_index') }}">Liste des utilisateurs</a></p>   
     </div>
 </article>   
+{% endif %}
 </aside>
 <style>
     /* Conteneur principal */
