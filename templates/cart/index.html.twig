@@ -22,8 +22,8 @@
                         <tr>
                             <td> {{ element.produit.nom }} </td>
                             <td> {{ element.produit.prix / 100 }} € </td>
-                            <td> {{ element.quantity }} </td>
-                            <td> {{ element.quantity * element.produit.prix / 100 }} €</td>
+                            <td> {{ element.quantite }} </td>
+                            <td> {{ element.quantite * element.produit.prix / 100 }} €</td>
                             <td>
                                 <a href=" {{ path('cart_add', {id: element.produit.id}) }} " class="btn btn-success">+</a>
                                  <a href="{{ path('cart_remove', {id: element.produit.id}) }}" class="btn btn-warning">-</a>
@@ -46,8 +46,14 @@
                         </td>
                     </tr>
                 </tfoot>
-            </table>      
-        </div>
+            </table>
+            {% if data|length > 0 %}
+                <a href="{{ path('cart_checkout') }}" class="btn btn-primary">Commander</a>
+            {% endif %}
+                    
+                    </div>
+        
+    
               
 
 
