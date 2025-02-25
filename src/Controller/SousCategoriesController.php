@@ -27,9 +27,5 @@ class SousCategoriesController extends AbstractController
         return $this->render('sous_categories/index.html.twig', [
             'category' => $category
         ]);
-
-
     }
-
-
 }

@@ -1,8 +1,97 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des produits{% endblock %}
+{% block title %}Liste des Produits{% endblock %}
+
+{% block styles %}
+    <style>
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            max-width: 280px;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .btn-add-cart {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            background: #28a745;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-add-cart:hover {
+            background: #218838;
+        }
+
+        .product-wrapper {
+            position: relative;
+            border-left: 2px solid #28a745;
+            border-right: 2px solid #007bff;
+            border-bottom: 2px solid #ff5733;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            background-color: #f8f9fa;
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-    <h1>Liste des produits</h1>
-
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Liste des Produits</h1>
+        <div class="row justify-content-center product-container">
+            {% for produit in produits %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center mb-4 product-wrapper">
+                    <div class="product-card">
+                        <img src="{{ asset('uploads/produits/' ~ produit.image) }}" alt="{{ produit.nom }}" class="img-fluid">
+                        <h3>{{ produit.nom }}</h3>
+                        <p>{{ produit.prix / 100 }} €</p>
+                        <a href="{{ path('cart_add', {id: produit.id}) }}" class="btn-add-cart">Ajouter au panier</a>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center">Aucun produit disponible pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

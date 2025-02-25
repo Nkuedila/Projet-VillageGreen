@@ -31,7 +31,7 @@ class UsersController extends AbstractController
     ): Response {
         $user = new Users();
 
-        // Check permission before processing the form
+        // Vérifiez l'autorisation avant de traiter le formulaire
         $this->denyAccessUnlessGranted('user_add', $user);
 
         $form = $this->createForm(UserType::class, $user);
@@ -41,7 +41,7 @@ class UsersController extends AbstractController
 
             $plainPassword = $form->get('password')->getData();
 
-            // encode the plain password
+            // encoder le mot de passe simple
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
             $entityManager->persist($user);
@@ -68,7 +68,7 @@ class UsersController extends AbstractController
     #[Route('/{id}/edit', name: 'app_users_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Users $user, EntityManagerInterface $entityManager, UserPasswordHasherInterface $userPasswordHasher): Response
     {
-        // Check permission before allowing edit
+        // Vérifiez l'autorisation avant d'autoriser la modification
         $this->denyAccessUnlessGranted('user_edit', $user);
 
         /*   // Debugging step
@@ -82,7 +82,7 @@ class UsersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $form->get('password')->getData();
 
-            // encode the plain password
+            // encoder le mot de passe simple
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
             $entityManager->flush();
@@ -100,7 +100,7 @@ class UsersController extends AbstractController
     #[Route('/{id}', name: 'app_users_delete', methods: ['POST'])]
     public function delete(Request $request, Users $user, EntityManagerInterface $entityManager): Response
     {
-        // Check permission before allowing delete
+        // Vérifiez l'autorisation avant d'autoriser la suppression
         $this->denyAccessUnlessGranted('user_delete', $user);
 
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->getPayload()->getString('_token'))) {

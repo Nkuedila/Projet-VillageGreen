@@ -3,6 +3,7 @@ namespace App\Service;
 
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
+use App\Entity\Commande;
 
 class SendMailService
 {

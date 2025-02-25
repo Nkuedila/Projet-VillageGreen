@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de commande</title>
+</head>
+<body>
+    <h2>Bonjour {{ user.nom }},</h2>
+    
+    <p>Merci pour votre commande ! Voici les détails :</p>
+
+    <p><strong>Référence :</strong> {{ commande.reference }}</p>
+    <p><strong>Date :</strong> {{ commande.createdAt|date('d/m/Y H:i') }}</p>
+    <p><strong>Total :</strong> {{ commande.total|number_format(2, ',', ' ') }} €</p>
+
+    <h3>Détails de votre commande :</h3>
+    <ul>
+        {% for id, quantite in panier %}
+            <li>Produit ID: {{ id }} - Quantité: {{ quantite }}</li>
+        {% endfor %}
+    </ul>
+
+    <p>Votre commande est en cours de traitement. Vous recevrez un autre email lorsque votre commande sera expédiée.</p>
+
+    <p>Merci de votre confiance,</p>
+    <p>L'équipe de notre boutique</p>
+</body>
+</html>

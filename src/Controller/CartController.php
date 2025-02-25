@@ -13,9 +13,11 @@ use App\Repository\ProduitsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+/* use Symfony\Component\HttpFoundation\Request;
+ */use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
@@ -137,7 +139,7 @@ class CartController extends AbstractController
     {
         $user = $security->getUser();
 
-        // ✅ Ensure user is authenticated
+        // ✅ verifier si l'utilisateur est connecter si oui il passe la commande si non il doit se connecter 
         if (!$user instanceof Users) {
             $this->addFlash('error', 'Vous devez être connecté pour valider votre panier.');
             return $this->redirectToRoute('app_login');
@@ -201,11 +203,13 @@ class CartController extends AbstractController
         SessionInterface $session,
         ProduitsRepository $produitsRepository,
         EntityManagerInterface $entityManager,
-        Security $security
+        Security $security,
+        MailerInterface $mailer // ✅ Inject MailerInterface
+
     ): Response {
         $user = $security->getUser();
 
-        // ✅ Ensure user is authenticated
+        // ✅ verifier si l'utilisateur est connecter si oui il passe la commande si non il doit se connecter 
         if (!$user instanceof Users) {
             $this->addFlash('error', 'Vous devez être connecté pour passer une commande.');
             return $this->redirectToRoute('app_login');
@@ -214,13 +218,13 @@ class CartController extends AbstractController
 
         $panier = $session->get('panier', []);
 
-        // ✅ Ensure cart is not empty
+        // ✅ verifier que le panier n'est pas vide pour passer au paiement
         if (!$panier || count($panier) === 0) {
             $this->addFlash('warning', 'Votre panier est vide.');
             return $this->redirectToRoute('cart_index');
         }
 
-        // ✅ Calculate total BEFORE persisting the order
+        // ✅ Calculer le total avant de passer au paiemennt 
         $total = 0;
         $reduction = ($user->getNumeroSiret() !== null) ? 0.50 : 0.0;
 
@@ -249,8 +253,7 @@ class CartController extends AbstractController
         $commande->setdatePaiement(new \DateTime());
         $commande->setCoefficient(1.0);
         $commande->setTotal($total);
-        $commande->setReduction(0); // ✅ Fix: Ensure 'reduction' is always set
-
+        $commande->setReduction(0); // ✅ Correctif : assurez-vous que la « réduction » est toujours définie
         // ✅ Définir le total avant de persister
         $entityManager->persist($commande);
 
@@ -273,10 +276,27 @@ class CartController extends AbstractController
         }
 
 
-        // ✅ Now flush everything together
+        // ✅ ici on peut soumettre sa commande cart tout est correcte
         $entityManager->flush();
 
-        // ✅ Clear cart session after successful order creation
+
+    // ✅ Envoyer l'email de confirmation après la commande
+    $email = (new Email())
+    ->from('no-reply@votresite.com')
+    ->to($user->getEmail())
+    ->subject('Confirmation de votre commande')
+    ->html($this->renderView('emails/commande_confirmation.html.twig', [
+        'user' => $user,
+        'commande' => $commande,
+        'panier' => $panier,
+    ]));
+
+$mailer->send($email);
+
+
+
+
+        // ✅ rediriger ver la page de commande
         $session->remove('panier');
 
         $this->addFlash('success', 'Votre commande a été enregistrée avec succès.');

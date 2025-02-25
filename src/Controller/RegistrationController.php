@@ -22,7 +22,8 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher,
         UserAuthenticatorInterface $userAuthenticator,
         UsersAuthenticator $authenticator,
-        EntityManagerInterface $entityManager, SendMailService $mail
+        EntityManagerInterface $entityManager,
+        SendMailService $mail
     ): Response {
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -32,10 +33,10 @@ class RegistrationController extends AbstractController
             /** @var string $plainPassword */
             $plainPassword = $form->get('password')->getData();
 
-            // encode the plain password
+            // encoder le mot de passe simple
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            // Validate numeroSiret for professionals
+            // Valider numéroSiret pour les professionnels
             if ($user->getUserstype() && $user->getUserstype()->getNom() === 'Professionnel' && !$user->getNumeroSiret()) {
                 $this->addFlash('error', 'Le numéro SIRET est obligatoire pour les professionnels.');
                 return $this->render('registration/register.html.twig', [
@@ -53,11 +54,11 @@ class RegistrationController extends AbstractController
                 'Inscription de votre compte sur le site Village Green',
                 'register',
                 compact('user')
-            ); 
+            );
 
 
 
-            // Log in the user manually
+            // Connectez l'utilisateur manuellement
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
