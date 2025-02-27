@@ -1,0 +1,54 @@
+@startuml
+left to right direction
+actor administrateur
+administrateur --> (gere tout l'administration du site ) 
+administrateur --> (modifie le categorie) 
+administrateur --> (accede aux détail de la commande )  
+administrateur --> (voit les utilisateur) 
+administrateur --> (ajoute/modifie/supprime les utilisateur)
+administrateur --> (ajoute/modifie/supprime les produits) 
+administrateur --> (ajoute/modifie/supprime les autres administrateur) 
+administrateur --> (se connecte au site) 
+administrateur --> (voit le tableau de bor(administration ) 
+
+actor commercial
+commercial --> (modifie le categorie) 
+commercial --> (modifie les produits) 
+commercial --> (se connecte au site)
+commercial --> (voit le tableau de bor(administration ) 
+
+actor admin_cl_professionel
+admin_cl_professionel--> (se connecte au site)
+admin_cl_professionel --> (ajoute/modifie/suprime le client professionnel avec numero siret )
+admin_cl_professionel --> (ajoute/modifie/suprime le client particulier sans numero siret )
+admin_cl_professionel --> (se connecte au site)
+
+
+actor admin_cl_particulier
+
+admin_cl_particulier--> (se connecte au site)
+admin_cl_particulier --> (ajoute/modifie/suprime le client professionnel avec numero siret )
+admin_cl_particulier --> (ajoute/modifie/suprime le client particulier sans numero siret )
+admin_cl_particulier --> (se connecte au site)
+
+actor client
+client -->(se connecte au site)
+client -->(Démare les catalogue)
+client -->(valide la commande) 
+client -->(est suivi aupres des admi/clien pro et admin/clien part )
+client -->(ajoute les produit)
+client -->(s'inscrit)
+client -->(consulte son profil)
+client -->(modifie son profil)
+client -->(modifie le panier)
+client -->(valide le panier)
+client -->(verifie son profil)
+client -->(effectue le paiement) 
+
+actor "Système de Paiement" as Paiement 
+
+(effectue le paiement)..> Paiement: "Validation ou échec du paiement"
+(effectue le paiement)..>(valide la commande): "Paiement validé"
+(valide la commande)..>administrateur: "Commande reçu"
+
+@enduml

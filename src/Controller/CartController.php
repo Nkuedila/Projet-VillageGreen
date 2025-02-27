@@ -248,7 +248,7 @@ class CartController extends AbstractController
         $commande = new Commande();
         $commande->setUsers($user);
         $commande->setReference(uniqid('CMD_'));
-        $commande->setEtat('En cours');
+        $commande->setEtat('Soldée');
         $commande->setCreatedAt(new \DateTimeImmutable());
         $commande->setDateFacture(new \DateTime());
         $commande->setAdresseFacture($user->getAdresse() ?? 'Adresse non spécifiée');

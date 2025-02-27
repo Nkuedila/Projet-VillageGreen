@@ -1,0 +1,49 @@
+@startuml
+autonumber 
+actor Client
+participant "VillageGreen" as SiteWeb
+participant "Base de donnée" as DATABASE
+participant "stysteme de PAiement" as Paiement
+participant " Admistrateur" as Admin
+
+Client -> SiteWeb: s'inscrit/crée un compte
+SiteWeb -> DATABASE: Verifie les identifiants
+DATABASE -> SiteWeb: Validation/echec connection
+SiteWeb -> Clien: connexion réussie / message d'eurreur
+
+Client -> SiteWeb: Ajouter un produit au panier
+SiteWeb -> DATABASE:verifier produit disponible
+DATABASE -> SiteWeb: confirme les produit disponible
+SiteWeb -> Client: produit ajouter au panier
+
+Client -> SiteWeb: modifie la quantité des produits
+SiteWeb ->Clent: met à jour le panier
+DATABASE -> SiteWeb: confirmation de la mise à jour
+
+Client -> SiteWeb: valide le panier
+SiteWeb -> Client:affiche le panier mise à jour
+
+Client -> SiteWeb: saisi l'adresse de livraison et de la facture
+SiteWeb -> DATABASE: enregistre les adresses 
+DATABASE -> SiteWeb: confirmation de l'enregistrement
+
+
+Client -> SietWeb: choisi methode de paiement
+Client -> SiteWeb: confirmation du paiement
+SiteWeb -> Paiement: envoi la demande du paiement
+Paiement -> SiteWeb:paiement avec succès/ echec de paiement
+SiteWeb -> Client:confirmation de paiement / Erreur de paiement
+
+alt Paiement Accepté
+SiteWeb ->DATABASE: créer une nouvele commande
+DATABASE->SiteWeb: l'enregistrement de la commande 
+SiteWeb->Admin: modifie la nouvelle commande 
+Admin->SiteWeb:Traite la commande et eprépare la livraison 
+SiteWeb->Client: envoie du recapitulatif et confirmation commande
+
+
+
+end
+
+
+@enduml

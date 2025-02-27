@@ -1,0 +1,33 @@
+--- a) Procédure stockée pour sélectionner les commandes non soldées (en cours de livraison)
+
+
+DELIMITER |
+
+CREATE PROCEDURE commandes_non_soldées()
+BEGIN
+    SELECT *
+    FROM commande
+    WHERE etat <> 'Soldée';
+END |
+
+DELIMITER ;
+
+
+CALL commandes_non_soldées();
+
+
+
+---b) Procédure stockée pour renvoyer le délai moyen entre la date de commande et la date de facturation
+
+DELIMITER |
+
+CREATE PROCEDURE delai_moyen_commande_facture()
+BEGIN
+    SELECT AVG(DATEDIFF(date_facture, created_at)) As delai_moyen
+    FROM commande
+    WHERE date_facture IS NOT NULL;
+END |
+
+DELIMITER ;
+
+CALL delai_moyen_commande_facture;

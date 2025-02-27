@@ -1,0 +1,43 @@
+// vue_produits_fournisseurs
+
+
+CREATE VIEW vue_produits_fournisseurs AS
+SELECT 
+    p.id As produitID,
+    p.nom AS produitNom,
+    p.description,
+    p.prix,
+    p.stock,
+    p.reference_fournisseur,
+    p.image,
+    f.id AS fournisseurID,
+    f.nom AS fournisseurNom,
+    f.adresse As fournisseurAdresse,
+    f.telephone AS fournisseurTelephone
+    
+FROM produits p
+JOIN fournisseur f ON p.fournisseur_id = f.id;
+
+SELECT * FROM vue_produits_fournisseurs;
+
+
+// vue_produits_categories
+
+CREATE VIEW vue_produits_categories AS
+SELECT 
+ p.id As produitID,
+    p.nom AS produitNom,
+    p.description,
+    p.prix,
+    p.stock,
+    p.image,
+    c.id AS categoriesID,
+    c.nom As categoriesNom,
+    c.image AS categoriesIMAGE,
+    c.parent_id
+    
+   FROM produits p
+   JOIN categories c ON p.categories_id = c.id;
+  
+  
+  SELECT * FROM  vue_produits_categories;
