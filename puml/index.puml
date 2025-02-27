@@ -1,0 +1,133 @@
+@startuml
+class UsersType {
+	**id : int**
+	nom : string
+	<color:#0000dd>users : Users[]</color>
+}
+
+class Users {
+	**id : int**
+	email : string
+	roles : array
+	password : string
+	nom : string
+	prenom : string
+	adresse : string
+	codepostal : string
+	ville : string
+	<color:#0000dd>commandes : Commande[]</color>
+	<color:#0000dd>userstype : UsersType</color>
+	numeroSiret : int
+	created_at : DateTimeImmutable
+}
+
+class Fournisseur {
+	**id : int**
+	nom : string
+	adresse : string
+	telephone : string
+	<color:#0000dd>produits : Produits[]</color>
+}
+
+class Commercial {
+	**id : int**
+	nom : string
+	prenom : string
+	email : string
+	<color:#0000dd>users : Users[]</color>
+}
+
+class MethodePaiement {
+	**id : int**
+	nom : string
+	<color:#0000dd>commande : Commande</color>
+}
+
+class DetailsLivraison {
+	**id : int**
+	quantite : string
+	<color:#0000dd>produits : Produits</color>
+	<color:#0000dd>livraison : Livraison</color>
+}
+
+class Categories {
+	**id : int**
+	nom : string
+	image : string
+	categoryCommande : int
+	<color:#0000dd>parent : self</color>
+	<color:#0000dd>categories : Categories[]</color>
+	<color:#0000dd>produits : Produits[]</color>
+	slug : string
+}
+
+class Produits {
+	**id : int**
+	nom : string
+	description : string
+	prix : int
+	stock : int
+	reference_fournisseur : string
+	image : string
+	<color:#0000dd>categories : Categories</color>
+	<color:#0000dd>fournisseur : Fournisseur</color>
+	<color:#0000dd>detailsLivraisons : DetailsLivraison[]</color>
+	<color:#0000dd>detailsCommandes : DetailsCommande[]</color>
+	created_at : DateTimeImmutable
+	slug : string
+}
+
+class Commande {
+	**id : int**
+	reference : string
+	reduction : string
+	etat : string
+	date_facture : DateTimeInterface
+	adresse_facture : string
+	date_livraison : DateTimeInterface
+	adresse_livraison : string
+	coefficient : string
+	total : string
+	date_paiement : DateTimeInterface
+	<color:#0000dd>users : Users</color>
+	<color:#0000dd>methodePaiements : MethodePaiement[]</color>
+	<color:#0000dd>livraisons : Livraison[]</color>
+	<color:#0000dd>detailsCommandes : DetailsCommande[]</color>
+	created_at : DateTimeImmutable
+}
+
+class Livraison {
+	**id : int**
+	date_livraison : DateTimeInterface
+	adresse_livraison : string
+	<color:#0000dd>commande : Commande</color>
+	<color:#0000dd>detailsLivraisons : DetailsLivraison[]</color>
+}
+
+class DetailsCommande {
+	**id : int**
+	quantite : string
+	prix : float
+	<color:#0000dd>commande : Commande</color>
+	<color:#0000dd>produits : Produits</color>
+}
+
+UsersType "1"--"*" Users
+Users "1"--"*" Commande
+Fournisseur "1"--"*" Produits
+Commercial "1"--"*" Users
+MethodePaiement "*"--"1" Commande
+DetailsLivraison "*"--"1" Produits
+DetailsLivraison "*"--"1" Livraison
+Categories "*"--"1" Categories
+Categories "1"--"*" Produits
+Produits "1"--"*" DetailsCommande
+Commande "1"--"*" Livraison
+Commande "1"--"*" DetailsCommande
+
+
+hide methods
+
+hide circle
+
+@enduml

@@ -13,8 +13,8 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CategoriesController extends AbstractController
 {
-    #[Route('/{slug}', name: 'list')]
-    public function list(Categories $category): Response
+    #[Route('/slug/{slug}', name: 'list')]
+    public function list($slug, Categories $category): Response
     {
 
         dump($category);
@@ -26,3 +26,24 @@ class CategoriesController extends AbstractController
         return $this->render('categories/list.html.twig', compact('category', 'produits'));
     }
 }
+
+
+
+
+/* #[Route('/slug/{slug}', name: 'details')]
+public function details($slug, ProduitsRepository $produitsRepository): Response
+{
+
+    $produit = $produitsRepository->findOneBy(['slug' => $slug]);
+
+    if (!$produit) {
+        throw $this->createNotFoundException('The product does not exist.');
+    }
+
+
+
+
+    return $this->render('produits/details.html.twig',  [
+        'produit' => $produit,
+    ]);
+ */

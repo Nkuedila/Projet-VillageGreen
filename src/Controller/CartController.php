@@ -7,6 +7,9 @@ use Stripe\Checkout\Session;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use App\Entity\Commande;
 use App\Entity\DetailsCommande;
+use App\Entity\DetailsLivraison;
+use App\Entity\Livraison;
+use App\Entity\MethodePaiement;
 use App\Entity\Produits;
 use App\Entity\Users;
 use App\Repository\ProduitsRepository;
@@ -14,7 +17,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 /* use Symfony\Component\HttpFoundation\Request;
- */use Symfony\Component\HttpFoundation\Response;
+ */
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -272,26 +276,54 @@ class CartController extends AbstractController
                 $DetailsCommande->setPrix($price);
 
                 $entityManager->persist($DetailsCommande);
+
+
+                $Livraison = new Livraison();
+                $Livraison->setCommande($commande);
+                $Livraison->setDateLivraison(new \DateTime('+3 days'));
+                $Livraison->setAdresseLivraison($user->getAdresse() ?? 'Adresse non spécifiée');
+
+
+                $DetailsLivraison = new DetailsLivraison();
+                $DetailsLivraison->setProduits($produit);
+                $DetailsLivraison->setQuantite($quantite);
+                $DetailsLivraison->setLivraison($Livraison);
+
+                $entityManager->persist($Livraison);
+                $entityManager->persist($DetailsLivraison);
             }
         }
+
+        // le PAIEMENT
+
+        $MethodePaiement = new MethodePaiement();
+        $MethodePaiement->setCommande($commande);
+        $MethodePaiement->setNom('Stripe');
+
+
+        $entityManager->persist($MethodePaiement);
+
+
 
 
         // ✅ ici on peut soumettre sa commande cart tout est correcte
         $entityManager->flush();
 
 
-    // ✅ Envoyer l'email de confirmation après la commande
-    $email = (new Email())
-    ->from('no-reply@votresite.com')
-    ->to($user->getEmail())
-    ->subject('Confirmation de votre commande')
-    ->html($this->renderView('emails/commande_confirmation.html.twig', [
-        'user' => $user,
-        'commande' => $commande,
-        'panier' => $panier,
-    ]));
 
-$mailer->send($email);
+
+        // ✅ Envoyer l'email de confirmation après la commande
+        $email = (new Email())
+            ->from('no-reply@votresite.com')
+            ->to($user->getEmail())
+            ->subject('Confirmation de votre commande')
+            ->html($this->renderView('emails/commande_confirmation.html.twig', [
+                'user' => $user,
+                'commande' => $commande,
+                'panier' => $panier,
+            ]));
+
+        $mailer->send($email);
 
 
 

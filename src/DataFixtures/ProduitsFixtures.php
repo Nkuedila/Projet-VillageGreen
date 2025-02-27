@@ -121,7 +121,7 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
 
             // Pianos Droits
             ['Yamaha B3 PE', ' de qualité supérieure.', 47000, 20, 'PianosDroits1.jpg', 'category_piano', 'fournisseur_2'],
-            ['Thomann UP 121 E/P Piano', 'de qualité supérieure.', 127000, 20, 'PianosDroits.jpg2', 'category_piano', 'fournisseur_2'],
+            ['Thomann UP 121 E/P Piano', 'de qualité supérieure.', 127000, 20, 'PianosDroits2.jpg', 'category_piano', 'fournisseur_2'],
             ['Kawai K-200 ATX 4 E/P Piano', 'de qualité supérieure.', 147000, 20, 'PianosDroits3.jpg', 'category_piano', 'fournisseur_2'],
             ['Yamaha b1 PE', ' de qualité supérieure.', 147000, 20, 'PianosDroits4.jpg', 'category_piano', 'fournisseur_2'],
             ['Yamaha U1 SH3 PE silent Piano', 'de qualité supérieure.', 858000, 20, 'PianosDroits5.jpg', 'category_piano', 'fournisseur_3'],

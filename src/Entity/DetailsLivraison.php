@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\DetailsLivraisonRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DetailsLivraisonRepository::class)]
@@ -22,16 +20,9 @@ class DetailsLivraison
     #[ORM\JoinColumn(nullable: false)]
     private ?Produits $produits = null;
 
-    /**
-     * @var Collection<int, Livraison>
-     */
-    #[ORM\OneToMany(targetEntity: Livraison::class, mappedBy: 'detailsLivraison')]
-    private Collection $livraisons;
-
-    public function __construct()
-    {
-        $this->livraisons = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(targetEntity: Livraison::class, inversedBy: 'detailsLivraisons')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Livraison $livraison = null;
 
     public function getId(): ?int
     {
@@ -62,32 +53,14 @@ class DetailsLivraison
         return $this;
     }
 
-    /**
-     * @return Collection<int, Livraison>
-     */
-    public function getLivraisons(): Collection
+    public function getLivraison(): ?Livraison
     {
-        return $this->livraisons;
+        return $this->livraison;
     }
 
-    public function addLivraison(Livraison $livraison): static
+    public function setLivraison(?Livraison $livraison): static
     {
-        if (!$this->livraisons->contains($livraison)) {
-            $this->livraisons->add($livraison);
-            $livraison->setDetailsLivraison($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLivraison(Livraison $livraison): static
-    {
-        if ($this->livraisons->removeElement($livraison)) {
-            // set the owning side to null (unless already changed)
-            if ($livraison->getDetailsLivraison() === $this) {
-                $livraison->setDetailsLivraison(null);
-            }
-        }
+        $this->livraison = $livraison;
 
         return $this;
     }

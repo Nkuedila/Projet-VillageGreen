@@ -88,7 +88,8 @@ class Commercial
     {
         if (!$this->users->contains($user)) {
             $this->users->add($user);
-            $user->setCommercial($this);
+            /*             $user->setCommercial($this);
+ */
         }
 
         return $this;
@@ -98,9 +99,9 @@ class Commercial
     {
         if ($this->users->removeElement($user)) {
             // set the owning side to null (unless already changed)
-            if ($user->getCommercial() === $this) {
+            /*  if ($user->getCommercial() === $this) {
                 $user->setCommercial(null);
-            }
+            } */
         }
 
         return $this;

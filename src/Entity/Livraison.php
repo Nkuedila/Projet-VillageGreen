@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivraisonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -24,9 +26,13 @@ class Livraison
     #[ORM\JoinColumn(nullable: false)]
     private ?Commande $commande = null;
 
-    #[ORM\ManyToOne(inversedBy: 'livraisons')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?DetailsLivraison $detailsLivraison = null;
+    #[ORM\OneToMany(targetEntity: DetailsLivraison::class, mappedBy: 'livraison', cascade: ['persist', 'remove'])]
+    private Collection $detailsLivraisons;
+
+    public function __construct()
+    {
+        $this->detailsLivraisons = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,14 +75,31 @@ class Livraison
         return $this;
     }
 
-    public function getDetailsLivraison(): ?DetailsLivraison
+    /**
+     * @return Collection<int, DetailsLivraison>
+     */
+    public function getDetailsLivraisons(): Collection
     {
-        return $this->detailsLivraison;
+        return $this->detailsLivraisons;
     }
 
-    public function setDetailsLivraison(?DetailsLivraison $detailsLivraison): static
+    public function addDetailsLivraison(DetailsLivraison $detailsLivraison): static
     {
-        $this->detailsLivraison = $detailsLivraison;
+        if (!$this->detailsLivraisons->contains($detailsLivraison)) {
+            $this->detailsLivraisons->add($detailsLivraison);
+            $detailsLivraison->setLivraison($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDetailsLivraison(DetailsLivraison $detailsLivraison): static
+    {
+        if ($this->detailsLivraisons->removeElement($detailsLivraison)) {
+            if ($detailsLivraison->getLivraison() === $this) {
+                $detailsLivraison->setLivraison(null);
+            }
+        }
 
         return $this;
     }

@@ -66,7 +66,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(nullable: true)]
     private ?int $numeroSiret = null;
 
-    /*    #[ORM\ManyToOne(inversedBy: 'users')]
+   /*  #[ORM\ManyToOne(inversedBy: 'users')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Commercial $commercial = null; */
 
@@ -252,7 +252,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /*   public function getCommercial(): ?Commercial
+  /*   public function getCommercial(): ?Commercial
     {
         return $this->commercial;
     }
@@ -263,7 +263,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-} */
+ */
 
     public function getNumeroSiret(): ?int
     {
@@ -276,7 +276,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-  /*   public function canModify(Users $user):bool{
+    /*   public function canModify(Users $user):bool{
         return false;
     } */
 }
