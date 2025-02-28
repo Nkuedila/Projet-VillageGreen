@@ -23,8 +23,8 @@ class Categories
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column]
-    private ?int $categoryCommande = null;
+     #[ORM\Column]
+    private ?int $categoryCommande = null; 
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
@@ -87,7 +87,7 @@ class Categories
         $this->categoryCommande = $categoryCommande;
 
         return $this;
-    }
+    } 
 
     public function getParent(): ?self
     {

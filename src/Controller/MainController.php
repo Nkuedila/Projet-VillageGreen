@@ -13,7 +13,7 @@ final class MainController extends AbstractController
     public function index(CategoriesRepository $categoriesRepository): Response
 
     {
-        $categories = $categoriesRepository->findBy(['parent' => null], ['categoryCommande' => 'asc']);
+        $categories = $categoriesRepository->findBy(['parent' => null],/*  ['categoryCommande' => 'asc'] */);
         return $this->render('main/index.html.twig', [
             'categories' => $categories
         ]);

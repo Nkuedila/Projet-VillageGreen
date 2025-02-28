@@ -1,0 +1,29 @@
+@startuml
+
+start
+:Client s'inscrit ou se connecte;
+
+if (connexion réussie ?) then (oui)
+       : accession au site et peut voir le catalogue ou l'accueil du site;
+       :ajoute le produit dans son panier;
+       while (peut modifier la quantité) is (oui)
+          :la mise à lour du panier;
+       endwhile
+        :valide le panier;
+        :saisi l'adresse de livraison et de la facturation;
+        :choisi un mode de paiement;
+        :confirme le panier;
+        if(le panier est accepté?) then (oui)
+        :création de la commande;
+        :envoie la confirmation au client;
+        :notifie l'admin;
+        else (no)
+        :affiche un mesage d'erreur;
+        :propose une autre methode de paiement;
+        endif
+        else(non)
+        :affichage d'un message d'erreur;
+        endif
+        stop
+
+@enduml
