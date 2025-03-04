@@ -13,8 +13,8 @@ class DetailsCommande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $quantite = null;
+    #[ORM\Column]
+    private ?int $quantite = null;
 
     #[ORM\Column(type: 'decimal', precision: 10, scale: 2)] // ✅ Ensure correct precision
     private ?float $prix = null; // ✅ Allow null initially
@@ -32,15 +32,15 @@ class DetailsCommande
         return $this->id;
     }
 
-    public function getQuantite(): ?string
+
+    public function getQuantite(): ?int
     {
         return $this->quantite;
     }
 
-    public function setQuantite(string $quantite): static
+    public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
-
         return $this;
     }
 

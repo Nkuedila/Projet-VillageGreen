@@ -1,491 +1,708 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dictionnaires des Données </title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionnaires des Données</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
-        th { background-color: #f4f4f4; }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: black;
+        color: #ddd;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: black;
+        color: white;
+      }
     </style>
-</head>
-<body>
-    <h1> entité Catégories</h1>
-    <h2> Données</h2>
+  </head>
+  <body>
+    <h1>entité Catégories</h1>
+    <h2>Données</h2>
     <table>
-        <tr>
-            <th>Nom de l'Attribut</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>int</td>
-            <td>Identifiant unique de la catégorie (clé primaire).</td>
-        </tr>
-        <tr>
-            <td>nom</td>
-            <td>string(255)</td>
-            <td>Nom unique de la catégorie.</td>
-        </tr>
-        <tr>
-            <td>image</td>
-            <td>string(255)</td>
-            <td>Chemin ou URL de l’image de la catégorie.</td>
-        </tr>
-        <tr>
-            <td>parent_id</td>
-            <td>int (nullable)</td>
-            <td>Référence à la catégorie parent.</td>
-        </tr>
-        <tr>
-            <td>categories</td>
-            <td>Collection</td>
-            <td>Liste des sous-catégories associées.</td>
-        </tr>
-        <tr>
-            <td>produits</td>
-            <td>Collection</td>
-            <td>Liste des produits appartenant à cette catégorie.</td>
-        </tr>
+      <tr>
+        <th>Nom de l'Attribut</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique de la catégorie (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>nom</td>
+        <td>string(255)</td>
+        <td>Nom unique de la catégorie.</td>
+      </tr>
+      <tr>
+        <td>image</td>
+        <td>string(255)</td>
+        <td>Chemin ou URL de l’image de la catégorie.</td>
+      </tr>
+      <tr>
+        <td>parent_id</td>
+        <td>int (nullable)</td>
+        <td>Référence à la catégorie parent.</td>
+      </tr>
+      <tr>
+        <td>categories</td>
+        <td>Collection</td>
+        <td>Liste des sous-catégories associées.</td>
+      </tr>
+      <tr>
+        <td>produits</td>
+        <td>Collection</td>
+        <td>Liste des produits appartenant à cette catégorie.</td>
+      </tr>
     </table>
 
     <h2>condition</h2>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>condition</th>
-        </tr>
-        <tr>
-            <td>condition 1</td>
-            <td>Une catégorie doit avoir un nom unique.</td>
-        </tr>
-        <tr>
-            <td>condition 2</td>
-            <td>Une catégorie peut être une sous-catégorie d'une autre catégorie.</td>
-        </tr>
-        <tr>
-            <td>condition 3</td>
-            <td>Une catégorie peut contenir plusieurs sous-catégories.</td>
-        </tr>
-        <tr>
-            <td>condition 4</td>
-            <td>Une catégorie peut contenir plusieurs produits, mais un produit appartient à une seule catégorie.</td>
-        </tr>
-        <tr>
-            <td>condition 5</td>
-            <td>Lorsqu'une catégorie est supprimée, ses sous-catégories sont également supprimées (CASCADE).</td>
-        </tr>
-        <tr>
-            <td>condition 6</td>
-            <td>Une catégorie doit obligatoirement avoir une image associée.</td>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>condition</th>
+      </tr>
+      <tr>
+        <td>condition 1</td>
+        <td>Une catégorie doit avoir un nom unique.</td>
+      </tr>
+      <tr>
+        <td>condition 2</td>
+        <td>
+          Une catégorie peut être une sous-catégorie d'une autre catégorie.
+        </td>
+      </tr>
+      <tr>
+        <td>condition 3</td>
+        <td>Une catégorie peut contenir plusieurs sous-catégories.</td>
+      </tr>
+      <tr>
+        <td>condition 4</td>
+        <td>
+          Une catégorie peut contenir plusieurs produits, mais un produit
+          appartient à une seule catégorie.
+        </td>
+      </tr>
+      <tr>
+        <td>condition 5</td>
+        <td>
+          Lorsqu'une catégorie est supprimée, ses sous-catégories sont également
+          supprimées (CASCADE).
+        </td>
+      </tr>
+      <tr>
+        <td>condition 6</td>
+        <td>Une catégorie doit obligatoirement avoir une image associée.</td>
+      </tr>
     </table>
 
     <h1>entité Fournisseur</h1>
-    
-    <h2> Données</h2>
+
+    <h2>Données</h2>
     <table>
-        <tr>
-            <th>Nom de l'Attribut</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>int</td>
-            <td>Identifiant unique du fournisseur (clé primaire).</td>
-        </tr>
-        <tr>
-            <td>nom</td>
-            <td>string(255)</td>
-            <td>Nom unique du fournisseur.</td>
-        </tr>
-        <tr>
-            <td>adresse</td>
-            <td>string(255)</td>
-            <td>Adresse complète du fournisseur.</td>
-        </tr>
-        <tr>
-            <td>telephone</td>
-            <td>string(20)</td>
-            <td>Numéro de téléphone du fournisseur.</td>
-        </tr>
-        <tr>
-            <td>produits</td>
-            <td>Collection</td>
-            <td>Liste des produits fournis par fournisseur.</td>
-        </tr>
+      <tr>
+        <th>Nom de l'Attribut</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique du fournisseur (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>nom</td>
+        <td>string(255)</td>
+        <td>Nom unique du fournisseur.</td>
+      </tr>
+      <tr>
+        <td>adresse</td>
+        <td>string(255)</td>
+        <td>Adresse complète du fournisseur.</td>
+      </tr>
+      <tr>
+        <td>telephone</td>
+        <td>string(20)</td>
+        <td>Numéro de téléphone du fournisseur.</td>
+      </tr>
+      <tr>
+        <td>produits</td>
+        <td>Collection</td>
+        <td>Liste des produits fournis par fournisseur.</td>
+      </tr>
     </table>
 
     <h2>condition</h2>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>condition</th>
-        </tr>
-        <tr>
-            <td>condition 1</td>
-            <td>Un fournisseur doit avoir un nom unique.</td>
-        </tr>
-        <tr>
-            <td>condition 2</td>
-            <td>Un fournisseur doit avoir un adresse valide.</td>
-        </tr>
-        <tr>
-            <td>condition 3</td>
-            <td>Un fournisseur doit avoir un numéro de téléphone valide (20 caractères max).</td>
-        </tr>
-        <tr>
-            <td>condition 4</td>
-            <td>Un fournisseur peut fournir plusieurs produits.</td>
-        </tr>
-        <tr>
-            <td>condition 5</td>
-            <td>Lorsqu'un fournisseur est supprimé, les produits liés ne doivent pas être supprimés mais désassociés.</td>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>condition</th>
+      </tr>
+      <tr>
+        <td>condition 1</td>
+        <td>Un fournisseur doit avoir un nom unique.</td>
+      </tr>
+      <tr>
+        <td>condition 2</td>
+        <td>Un fournisseur doit avoir un adresse valide.</td>
+      </tr>
+      <tr>
+        <td>condition 3</td>
+        <td>
+          Un fournisseur doit avoir un numéro de téléphone valide (20 caractères
+          max).
+        </td>
+      </tr>
+      <tr>
+        <td>condition 4</td>
+        <td>Un fournisseur peut fournir plusieurs produits.</td>
+      </tr>
+      <tr>
+        <td>condition 5</td>
+        <td>
+          Lorsqu'un fournisseur est supprimé, les produits liés ne doivent pas
+          être supprimés mais désassociés.
+        </td>
+      </tr>
     </table>
 
+    <h1>entité Produits</h1>
 
-    <h1>entité  Produits</h1>
-    
-    <h2> Données</h2>
+    <h2>Données</h2>
     <table>
-        <tr>
-            <th>Nom de l'Attribut</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>int</td>
-            <td>Identifiant unique du produit (clé primaire).</td>
-        </tr>
-        <tr>
-            <td>nom</td>
-            <td>string(255)</td>
-            <td>Nom du produit.</td>
-        </tr>
-        <tr>
-            <td>description</td>
-            <td>text</td>
-            <td>Description détaillée du produit.</td>
-        </tr>
-        <tr>
-            <td>prix</td>
-            <td>int</td>
-            <td>Prix du produit en centimes.</td>
-        </tr>
-        <tr>
-            <td>stock</td>
-            <td>int</td>
-            <td>Quantité disponible en stock.</td>
-        </tr>
-        <tr>
-            <td>created_at</td>
-            <td>datetime</td>
-            <td>Date et heure de création du produit.</td>
-        </tr>
-        <tr>
-            <td>reference_fournisseur</td>
-            <td>string(100)</td>
-            <td>Référence fournisseur du produit.</td>
-        </tr>
-        <tr>
-            <td>image</td>
-            <td>string(255)</td>
-            <td>URL de la photo du produit.</td>
-        </tr>
-        <tr>
-            <td>categories</td>
-            <td>relation</td>
-            <td>Catégorie du produit.</td>
-        </tr>
-        <tr>
-            <td>fournisseur</td>
-            <td>relation</td>
-            <td>Fournisseur du produit.</td>
-        </tr>
+      <tr>
+        <th>Nom de l'Attribut</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique du produit (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>nom</td>
+        <td>string(255)</td>
+        <td>Nom du produit.</td>
+      </tr>
+      <tr>
+        <td>description</td>
+        <td>text</td>
+        <td>Description détaillée du produit.</td>
+      </tr>
+      <tr>
+        <td>prix</td>
+        <td>int</td>
+        <td>Prix du produit en centimes.</td>
+      </tr>
+      <tr>
+        <td>stock</td>
+        <td>int</td>
+        <td>Quantité disponible en stock.</td>
+      </tr>
+      <tr>
+        <td>created_at</td>
+        <td>datetime</td>
+        <td>Date et heure de création du produit.</td>
+      </tr>
+      <tr>
+        <td>reference_fournisseur</td>
+        <td>string(100)</td>
+        <td>Référence fournisseur du produit.</td>
+      </tr>
+      <tr>
+        <td>image</td>
+        <td>string(255)</td>
+        <td>URL de la photo du produit.</td>
+      </tr>
+      <tr>
+        <td>categories</td>
+        <td>relation</td>
+        <td>Catégorie du produit.</td>
+      </tr>
+      <tr>
+        <td>fournisseur</td>
+        <td>relation</td>
+        <td>Fournisseur du produit.</td>
+      </tr>
     </table>
 
     <h2>condition</h2>
     <table>
-        <tr>
-            <th>ID</th>
-            <th>condition</th>
-        </tr>
-        <tr>
-            <td>condition 1</td>
-            <td>Un produit doit avoir un nom unique.</td>
-        </tr>
-        <tr>
-            <td>condition 2</td>
-            <td>Le prix d'un produit doit être supérieur à zéro.</td>
-        </tr>
-        <tr>
-            <td>condition 3</td>
-            <td>Le stock d'un produit ne peut pas être négatif.</td>
-        </tr>
-        <tr>
-            <td>condition 4</td>
-            <td>Un produit appartient à une seule catégorie.</td>
-        </tr>
-        <tr>
-            <td>condition 5</td>
-            <td>Un produit peut être lié à un seul fournisseur.</td>
-        </tr>
-        <tr>
-            <td>condition</td>
-            <td>Lorsqu'un produit est supprimé, ses commandes et livraisons doivent être conservées mais désassociées.</td>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>condition</th>
+      </tr>
+      <tr>
+        <td>condition 1</td>
+        <td>Un produit doit avoir un nom unique.</td>
+      </tr>
+      <tr>
+        <td>condition 2</td>
+        <td>Le prix d'un produit doit être supérieur à zéro.</td>
+      </tr>
+      <tr>
+        <td>condition 3</td>
+        <td>Le stock d'un produit ne peut pas être négatif.</td>
+      </tr>
+      <tr>
+        <td>condition 4</td>
+        <td>Un produit appartient à une seule catégorie.</td>
+      </tr>
+      <tr>
+        <td>condition 5</td>
+        <td>Un produit peut être lié à un seul fournisseur.</td>
+      </tr>
+      <tr>
+        <td>condition</td>
+        <td>
+          Lorsqu'un produit est supprimé, ses commandes et livraisons doivent
+          être conservées mais désassociées.
+        </td>
+      </tr>
     </table>
 
+    <h1>entité Users</h1>
+    <h2>Données</h2>
+    <table>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Contraintes</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>Integer</td>
+        <td>Identifiant unique de l'utilisateur</td>
+        <td>Auto-incrémenté, clé primaire</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>String (180)</td>
+        <td>Adresse email de l'utilisateur</td>
+        <td>Unique, obligatoire</td>
+      </tr>
+      <tr>
+        <td>roles</td>
+        <td>Array</td>
+        <td>Rôles attribués à l'utilisateur</td>
+        <td>Valeur par défaut : ROLE_USER</td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td>String</td>
+        <td>Mot de passe hashé</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>nom</td>
+        <td>String (255)</td>
+        <td>Nom de l'utilisateur</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>prenom</td>
+        <td>String (255)</td>
+        <td>Prénom de l'utilisateur</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>adresse</td>
+        <td>String (255)</td>
+        <td>Adresse postale</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>codepostal</td>
+        <td>String (10)</td>
+        <td>Code postal</td>
+        <td>Format numérique</td>
+      </tr>
+      <tr>
+        <td>ville</td>
+        <td>String (150)</td>
+        <td>Ville</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>created_at</td>
+        <td>DateTimeImmutable</td>
+        <td>Date de création du compte</td>
+        <td>Valeur par défaut : CURRENT_TIMESTAMP</td>
+      </tr>
+      <tr>
+        <td>userstype</td>
+        <td>Relation</td>
+        <td>Type d'utilisateur</td>
+        <td>Peut être null</td>
+      </tr>
+      <tr>
+        <td>numeroSiret</td>
+        <td>Integer</td>
+        <td>Numéro SIRET (entreprise)</td>
+        <td>Peut être null</td>
+      </tr>
+    </table>
 
-    <h2>entité Users</h2>
+    <h2>condition</h2>
+    <table>
+      <tr>
+        <td>
+          Un utilisateur ne peut pas avoir la même adresse email qu’un autre
+          (contrainte d’unicité).
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Le mot de passe est stocké de manière hashée(cacher) pour assurer la
+          sécurité.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Les utilisateurs qui sont des admins, on tous un role qui leur est
+          spécifique <strong>ROLE_USER</strong>.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Le champ <strong>numeroSiret</strong> est uniquement pour les
+          utilisateurs du type professionnels .
+        </td>
+      </tr>
+      <tr>
+        <td>
+          même un utilisateur est supprimé, ses commandes ne doivent pas être
+          supprimées automatiquement.
+        </td>
+      </tr>
+    </table>
+
+    <h1>entité userstype</h1>
+    <h2>Données</h2>
+    <table>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Contraintes</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>Integer</td>
+        <td>Identifiant unique de l'utilisateur</td>
+        <td>Auto-incrémenté, clé primaire</td>
+      </tr>
+
+      <tr>
+        <td>nom</td>
+        <td>String (255)</td>
+        <td>Nom de l'utilisateur</td>
+        <td>Obligatoire</td>
+      </tr>
+
+      <tr>
+        <td>users</td>
+        <td>Relation</td>
+        <td>Type d'utilisateur</td>
+        <td>Peut être null</td>
+      </tr>
+    </table>
+
+    <h1>Livraison</h1>
+    <h2>Données</h2>
 
     <table>
-        <tr>
-            <th>Nom du champ</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Contraintes</th>
-        </tr>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique du livraison (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>dateLivraison</td>
+        <td>DateTimeImmutable</td>
+        <td>Date prévue pour la livraison</td>
+      </tr>
+      <tr>
+        <td>adresseLivraison</td>
+        <td>String (255)</td>
+        <td>Adresse de livraison</td>
+      </tr>
+      <tr>
+        <td>commande</td>
+        <td>relation</td>
+        <td>livraison de la commande</td>
+      </tr>
+      <tr>
+        <td>detailsLivraison</td>
+        <td>relation</td>
+        <td>details dela livraison</td>
+      </tr>
+    </table>
+
+    <h1>detailsLivraison</h1>
+    <h2>Données</h2>
+
+    <table>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique de detailslivraison (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>Quantité</td>
+        <td>int</td>
+        <td>la quantité de la livraison</td>
+      </tr>
+
+      <tr>
+        <td>produit</td>
+        <td>relation</td>
+        <td>details deu produit</td>
+      </tr>
+      <tr>
+        <td>Livraison</td>
+        <td>relation</td>
+        <td>details de la livraison</td>
+      </tr>
+    </table>
+
+    <h1>entité Commande</h1>
+    <h2>Données</h2>
+    <table>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Contraintes</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>Integer</td>
+        <td>Identifiant unique de la commande</td>
+        <td>Auto-incrémenté, clé primaire</td>
+      </tr>
+      <tr>
+        <td>reference</td>
+        <td>String (50)</td>
+        <td>Référence unique de la commande</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>created_at</td>
+        <td>DateTimeImmutable</td>
+        <td>Date de création de la commande</td>
+        <td>Valeur par défaut : CURRENT_TIMESTAMP</td>
+      </tr>
+      <tr>
+        <td>reduction</td>
+        <td>Float</td>
+        <td>Réduction appliquée sur la commande</td>
+        <td>Valeur par défaut : 0.0</td>
+      </tr>
+      <tr>
+        <td>etat</td>
+        <td>String (255)</td>
+        <td>Statut actuel de la commande</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>dateFacture</td>
+        <td>Date</td>
+        <td>Date d’émission de la facture</td>
+        <td>Peut être null</td>
+      </tr>
+      <tr>
+        <td>adresseFacture</td>
+        <td>String (255)</td>
+        <td>Adresse de facturation</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>dateLivraison</td>
+        <td>DateTimeImmutable</td>
+        <td>Date prévue pour la livraison</td>
+        <td>Peut être null</td>
+      </tr>
+      <tr>
+        <td>adresseLivraison</td>
+        <td>String (255)</td>
+        <td>Adresse de livraison</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>users</td>
+        <td>Relation</td>
+        <td>Utilisateur ayant passé la commande</td>
+        <td>Relation ManyToOne avec `Users`</td>
+      </tr>
+      <tr>
+        <td>coefficient</td>
+        <td>Float</td>
+        <td>Coefficient de marge appliqué à la commande</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>total</td>
+        <td>Decimal (10,2)</td>
+        <td>Montant total de la commande</td>
+        <td>Obligatoire</td>
+      </tr>
+      <tr>
+        <td>datePaiement</td>
+        <td>DateTime</td>
+        <td>Date du paiement</td>
+        <td>Peut être null</td>
+      </tr>
+    </table>
+
+    <h2>condition</h2>
+    <table>
+      <tr>
+        <td>
+          pour qu'une commande puisse passer il doit y avoir une connexion de la
+          par d'un utilisateur donc l'utilisateur doit se connecté.
+        </td>
+      </tr>
+      <tr>
+        <td>Le champ <strong>reduction</strong> ne peut pas être négatif.</td>
+      </tr>
+      <tr>
+        <td>
+          Une commande ne peut être facturée que si elle est en statut
+          <strong>"Validée"</strong> ou supérieur.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          L’adresse de livraison et l’adresse de facturation doivent être
+          renseignées obligatoirement.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Une commande ne peut être livrée que si son paiement est validé.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Le total doit être calculé automatiquement en fonction des produits et
+          de la réduction.
+        </td>
+      </tr>
+    </table>
+
+    <h1>entité detailsCommande</h1>
+    <h2>Données</h2>
+
+    <table>
+      <tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique de detailsCommande (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>Quantité</td>
+        <td>int</td>
+        <td>la quantité de la commande</td>
+      </tr>
+      <tr>
+        <td>prix</td>
+        <td>decimal</td>
+        <td>prix de la commande</td>
+      </tr>
+      <tr>
+        <td>commande</td>
+        <td>relation</td>
+        <td>detail de la commande</td>
+      </tr>
+      <tr>
+        <td>produit</td>
+        <td>relation</td>
+        <td>detail de produit commandé</td>
+      </tr>
+    </table>
+    <h1>entité commercial</h1>
+    <h2>Données</h2>
+    <table>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
         <tr>
             <td>id</td>
-            <td>Integer</td>
-            <td>Identifiant unique de l'utilisateur</td>
-            <td>Auto-incrémenté, clé primaire</td>
-        </tr>
-        <tr>
-            <td>email</td>
-            <td>String (180)</td>
-            <td>Adresse email de l'utilisateur</td>
-            <td>Unique, obligatoire</td>
-        </tr>
-        <tr>
-            <td>roles</td>
-            <td>Array</td>
-            <td>Rôles attribués à l'utilisateur</td>
-            <td>Valeur par défaut : ROLE_USER</td>
-        </tr>
-        <tr>
-            <td>password</td>
-            <td>String</td>
-            <td>Mot de passe hashé</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
+            <td>int</td>
+            <td>Identifiant unique de commercial (clé primaire).</td>
+          </tr>
+          <tr>
             <td>nom</td>
-            <td>String (255)</td>
-            <td>Nom de l'utilisateur</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
+            <td>string(255)</td>
+            <td>Nom de commercial.</td>
+          </tr>
+          <tr>
             <td>prenom</td>
-            <td>String (255)</td>
-            <td>Prénom de l'utilisateur</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>adresse</td>
-            <td>String (255)</td>
-            <td>Adresse postale</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>codepostal</td>
-            <td>String (10)</td>
-            <td>Code postal</td>
-            <td>Format numérique</td>
-        </tr>
-        <tr>
-            <td>ville</td>
-            <td>String (150)</td>
-            <td>Ville</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>created_at</td>
-            <td>DateTimeImmutable</td>
-            <td>Date de création du compte</td>
-            <td>Valeur par défaut : CURRENT_TIMESTAMP</td>
-        </tr>
-        <tr>
-            <td>userstype</td>
-            <td>Relation</td>
-            <td>Type d'utilisateur</td>
-            <td>Peut être null</td>
-        </tr>
-        <tr>
-            <td>numeroSiret</td>
-            <td>Integer</td>
-            <td>Numéro SIRET (entreprise)</td>
-            <td>Peut être null</td>
-        </tr>
+            <td>string(255)</td>
+            <td>prenon de commercial.</td>
+          </tr>
+          <tr>
+            <td>user</td>
+            <td>relation</td>
+            <td>users geré par un commercial</td>
+          </tr>
     </table>
-
-    <h2> condition</h2>
+   <h1>entité methodePaiement</h1>
+   <h2>Données</h2>
     <table>
         <tr>
-            <td>Un utilisateur ne peut pas avoir la même adresse email qu’un autre (contrainte d’unicité).</td>
-       </tr>
-            <tr>
-            <td>Le mot de passe est stocké de manière hashée(cacher) pour assurer la sécurité.</td>
-        </tr>
-        <tr>
-            <td> Les utilisateurs qui sont des admins, on tous un role qui leur est spécifique <strong>ROLE_USER</strong>.</td>
-        </tr>
-        <tr>
-            <td>Le champ <strong>numeroSiret</strong> est uniquement pour les utilisateurs du type professionnels .</td>
-        </tr>
-        <tr>
-            <td>même un utilisateur est supprimé, ses commandes ne doivent pas être supprimées automatiquement.</td>
-        </tr>
+        <th>Nom du champ</th>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>int</td>
+        <td>Identifiant unique de commercial (clé primaire).</td>
+      </tr>
+      <tr>
+        <td>nom</td>
+        <td>string(255)</td>
+        <td>Nom de commercial.</td>
+      </tr>
+      <tr>
+        <td>commande</td>
+        <td>relation</td>
+        <td>commande à payer</td>
+      </tr>
     </table>
 
-    <h2>entité userstype</h2>
-
-    <table>
-        <tr>
-            <th>Nom du champ</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Contraintes</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>Integer</td>
-            <td>Identifiant unique de l'utilisateur</td>
-            <td>Auto-incrémenté, clé primaire</td>
-        </tr>
-
-        <tr>
-            <td>nom</td>
-            <td>String (255)</td>
-            <td>Nom de l'utilisateur</td>
-            <td>Obligatoire</td>
-        </tr>
-
-        <tr>
-            <td>users</td>
-            <td>Relation</td>
-            <td>Type d'utilisateur</td>
-            <td>Peut être null</td>
-        </tr>
-    </table>
-
-
-    <h2>Livraison</h2>
-    <table>
-        <tr>
-            <th>Nom du champ</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Contraintes</th>
-        </tr>
-    </table>
-
-    <h2>entité Commande</h2>
-
-    <table>
-        <tr>
-            <th>Nom du champ</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Contraintes</th>
-        </tr>
-        <tr>
-            <td>id</td>
-            <td>Integer</td>
-            <td>Identifiant unique de la commande</td>
-            <td>Auto-incrémenté, clé primaire</td>
-        </tr>
-        <tr>
-            <td>reference</td>
-            <td>String (50)</td>
-            <td>Référence unique de la commande</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>created_at</td>
-            <td>DateTimeImmutable</td>
-            <td>Date de création de la commande</td>
-            <td>Valeur par défaut : CURRENT_TIMESTAMP</td>
-        </tr>
-        <tr>
-            <td>reduction</td>
-            <td>Float</td>
-            <td>Réduction appliquée sur la commande</td>
-            <td>Valeur par défaut : 0.0</td>
-        </tr>
-        <tr>
-            <td>etat</td>
-            <td>String (255)</td>
-            <td>Statut actuel de la commande</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>dateFacture</td>
-            <td>Date</td>
-            <td>Date d’émission de la facture</td>
-            <td>Peut être null</td>
-        </tr>
-        <tr>
-            <td>adresseFacture</td>
-            <td>String (255)</td>
-            <td>Adresse de facturation</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>dateLivraison</td>
-            <td>Date</td>
-            <td>Date prévue pour la livraison</td>
-            <td>Peut être null</td>
-        </tr>
-        <tr>
-            <td>adresseLivraison</td>
-            <td>String (255)</td>
-            <td>Adresse de livraison</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>users</td>
-            <td>Relation</td>
-            <td>Utilisateur ayant passé la commande</td>
-            <td>Relation ManyToOne avec `Users`</td>
-        </tr>
-        <tr>
-            <td>coefficient</td>
-            <td>Float</td>
-            <td>Coefficient de marge appliqué à la commande</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>total</td>
-            <td>Decimal (10,2)</td>
-            <td>Montant total de la commande</td>
-            <td>Obligatoire</td>
-        </tr>
-        <tr>
-            <td>datePaiement</td>
-            <td>DateTime</td>
-            <td>Date du paiement</td>
-            <td>Peut être null</td>
-        </tr>
-    </table>
-
-    <h2>condition</h2>
-    <ul>
-        <li>pour qu'une commande puisse passer il doit y avoir une connexion de la par d'un utilisateur donc l'utilisateur doit se connecté.</li>
-        <li> Le champ <strong>reduction</strong> ne peut pas être négatif.</li>
-        <li> Une commande ne peut être facturée que si elle est en statut <strong>"Validée"</strong> ou supérieur.</li>
-        <li> L’adresse de livraison et l’adresse de facturation doivent être renseignées obligatoirement.</li>
-        <li> Une commande ne peut être livrée que si son paiement est validé.</li>
-        <li> Le total doit être calculé automatiquement en fonction des produits et de la réduction.</li>
-    </ul>
-
-
-</body>
+  </body>
 </html>

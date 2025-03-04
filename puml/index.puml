@@ -45,7 +45,7 @@ class MethodePaiement {
 
 class DetailsLivraison {
 	**id : int**
-	quantite : string
+	quantite : int
 	<color:#0000dd>produits : Produits</color>
 	<color:#0000dd>livraison : Livraison</color>
 }
@@ -106,7 +106,7 @@ class Livraison {
 
 class DetailsCommande {
 	**id : int**
-	quantite : string
+	quantite : int
 	prix : float
 	<color:#0000dd>commande : Commande</color>
 	<color:#0000dd>produits : Produits</color>
