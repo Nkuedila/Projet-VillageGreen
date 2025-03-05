@@ -1,0 +1,185 @@
+CREATE DATABASE Village_db;
+
+USE Village_db;
+
+
+
+CREATE TABLE fournisseur (
+    id_fournisseur INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL UNIQUE,
+    adresse VARCHAR(255),
+    telephone VARCHAR(20)
+);
+
+
+
+CREATE TABLE categories (
+    id_categories INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL UNIQUE,
+    photo VARCHAR(255),
+    id_parent INT DEFAULT NULL,  -- Pour créer une hiérarchie du categories
+    FOREIGN KEY (id_parent) REFERENCES categories(id_categories) ON DELETE SET NULL
+);
+
+
+CREATE TABLE produit (
+    id_produit INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(255) NOT NULL,
+    description TEXT,
+    reference_fournisseur VARCHAR(100) NOT NULL UNIQUE,
+    prix_achat DECIMAL(10,2) NOT NULL,
+    photo VARCHAR(255),
+    id_categories INT NOT NULL,
+    id_fournisseur INT NOT NULL,
+    FOREIGN KEY (id_categories) REFERENCES categories(id_categories) ON DELETE CASCADE,
+    FOREIGN KEY (id_fournisseur) REFERENCES fournisseur(id_fournisseur) ON DELETE CASCADE
+);
+
+
+CREATE TABLE commercial (
+    id_commercial INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE
+);
+
+
+
+CREATE TABLE users (
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(100) NOT NULL,
+    prenom VARCHAR(100) NOT NULL,
+    roles VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    mot_de_passe VARCHAR(255) NOT NULL,
+    coefficient DECIMAL(5,2) NOT NULL,
+    types ENUM('Professionnel', 'Particulier') NOT NULL,
+    ville VARCHAR(255) NOT NULL,
+    numerosiret VARCHAR(50) NOT NULL,
+    codePostal VARCHAR(50) NOT NULL,
+    
+    FOREIGN KEY (id_commande) REFERENCES commande(id_commande) ON DELETE CASCADE
+    FOREIGN KEY (id_usersType) REFERENCES usersType(id_usersType) ON DELETE CASCADE
+
+
+);
+
+INSERT INTO users (nom, prenom, roles, email, mot_de_passe, coefficient, types, ville, numerosiret, codepostal, ) VALUES
+('Nkuedila', 'Ali', 'admin', 'alibunzi1995@gmail.com', 'password123', '', 'users', 'Amiens', '', '80000', 1),
+('Nkuedila', 'Ali', 'admin', 'alibunzi1995@gmail.com', 'password123', '', 'users', 'Amiens', '', '80000', 1),
+('Nkuedila', 'Ali', 'admin', 'alibunzi1995@gmail.com', 'password123', '', 'users', 'Amiens', '', '80000', 1),
+('Nkuedila', 'Ali', 'admin', 'alibunzi1995@gmail.com', 'password123', '', 'users', 'Amiens', '', '80000', 1),
+
+('Mohamed', 'Musadaq', 'admin commercial', 'musadaq@gmail.com', 'password123', 'Particulier', 2);
+
+
+CREATE TABLE usersType(
+    id_user INT PRIMARY KEY AUTO_INCREMENT,
+    nom VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_users) REFERENCES users(id_users) ON DELETE CASCADE
+
+);
+
+
+CREATE TABLE commande (
+    id_commande INT PRIMARY KEY AUTO_INCREMENT,
+    id_user INT NOT NULL,
+    date_commande DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total_ht DECIMAL(10,2),
+    tva DECIMAL(10,2),
+    total_ttc DECIMAL(10,2),
+    etat ENUM('En attente', 'Expédiée', 'Livrée') DEFAULT 'En attente',
+    methode_paiement ENUM('Carte bancaire', 'Virement', 'Chèque') NOT NULL,
+    date_facture DATETIME DEFAULT NULL,
+    adresse_facturation VARCHAR(255) NOT NULL,
+    adresse_livraison VARCHAR(255) NOT NULL,
+    date_livraison DATETIME DEFAULT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id_user)
+);
+
+
+CREATE TABLE commande_details (
+    id_commande INT NOT NULL,
+    id_produit INT NOT NULL,
+    quantite INT NOT NULL CHECK (quantite > 0),
+    prix_unitaire DECIMAL(10,2) NOT NULL,
+    PRIMARY KEY (id_commande, id_produit),
+    FOREIGN KEY (id_commande) REFERENCES commande(id_commande) ON DELETE CASCADE,
+    FOREIGN KEY (id_produit) REFERENCES produit(id_produit) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE livraison (
+    id_livraison INT PRIMARY KEY AUTO_INCREMENT,
+    id_commande INT NOT NULL,
+    date_livraison DATETIME DEFAULT CURRENT_TIMESTAMP,
+    adresse_livraison VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_commande) REFERENCES commande(id_commande) ON DELETE CASCADE
+);
+
+
+
+CREATE TABLE livraison_details (
+    id_livraison INT NOT NULL,
+    id_produit INT NOT NULL,
+    quantite INT NOT NULL CHECK (quantite > 0),
+    PRIMARY KEY (id_livraison, id_produit),
+    FOREIGN KEY (id_livraison) REFERENCES livraison(id_livraison) ON DELETE CASCADE,
+    FOREIGN KEY (id_produit) REFERENCES produit(id_produit) ON DELETE CASCADE
+);
+
+
+
+--- pour nos insertions
+
+
+INSERT INTO fournisseur (nom, adresse, telephone) VALUES 
+('Thomann', 'Burgebrach, Allemagne', '+33-176-548-596'),
+('Woodbrass', 'saint-herlain, France', '01 86 65 03 03'),
+('Yamaha', 'Tokyo, Japon', '+81 3-1234-5678'),
+('jupiter', 'Marburg, Allemagne', '06421/989-0');
+
+
+INSERT INTO categories (nom, photo, id_parent) VALUES 
+('Instruments à Cordes', 'cordes.jpg', NULL), 
+('Instruments à vent', 'cornet.jpg', NULL), 
+('percussion', 'percussion.jpg', NULL);
+
+
+
+INSERT INTO commercial (nom, prenom, email) VALUES
+('Dupont', 'Jean', 'jean.dupont@villagegreen.com'),
+('Martin', 'Sophie', 'sophie.martin@villagegreen.com');
+
+
+
+
+
+
+
+-- Commande en attente (Particulier)
+INSERT INTO commande (id_user, total_ht, tva, total_ttc, etat, methode_paiement, adresse_facturation, adresse_livraison) 
+VALUES (1, 500.00, 100.00, 600.00, 'En attente', 'Carte bancaire', '12 Rue des Musiciens, Paris', '12 Rue des Musiciens, Paris');
+
+
+
+
+-- Commande expédiée (Professionnel)
+INSERT INTO commande (id_user, total_ht, tva, total_ttc, etat, methode_paiement, adresse_facturation, adresse_livraison, date_livraison) 
+VALUES (2, 1200.00, 240.00, 1440.00, 'Expédiée', 'Virement', '34 Avenue des Artistes, Lyon', '56 Boulevard du Son, Marseille', NOW());
+
+
+
+INSERT INTO produit (nom, description, reference_fournisseur, prix_achat, photo, id_categories, id_fournisseur) 
+VALUES ('guittard', 'instument à corde électrique', 'strait123', '750.00', 'strait', 37, 2);
+
+
+SELECT * FROM fournisseur;
+
+
+ 
+
+
+
+
