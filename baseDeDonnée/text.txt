@@ -1,0 +1,205 @@
+Étape 1 : Préparation du projet
+
+Assurez-vous que votre projet Symfony est prêt :
+
+    Configurer la base de données dans le fichier .env :
+
+DATABASE_URL="mysql://username:password@127.0.0.1:3306/village_green?serverVersion=8.0"
+
+Créer la base de données :
+
+php bin/console doctrine:database:create
+
+Installez Symfony Maker et Doctrine (si ce n'est pas déjà fait) :
+
+    composer require symfony/orm-pack
+    composer require --dev symfony/maker-bundle
+
+Étape 2 : Créer les entités
+
+Nous allons créer chaque entité avec ses relations. Symfony Maker permet de le faire facilement.
+1. Créer l'entité Fournisseur
+
+php bin/console make:entity Fournisseur
+
+Ajoutez les champs suivants :
+
+    nom_fournisseur : string (length=255, nullable=false)
+    contact : string (length=255, nullable=true)
+    adresse : string (nullable=true)
+    telephone : string (length=15, nullable=true)
+    email : string (length=255, nullable=true)
+    produits: relation(OneToMany, nullable=false) avec l'entité Produit
+
+2. Créer l'entité Livraison
+
+php bin/console make:entity  Livraison
+
+Ajoutez les champs suivants :
+
+    date_livraison: DATE_MUTABLE(DateTimeInterface, nullable=false)
+    adresse : string (nullable=true)
+
+Ajoutez une relation auto-référencée pour gérer les detailsLivraison :
+
+detailslivraison : OneToMany vers detailslivraison (nullable=false)
+
+Ajoutez une relation auto-référencée pour gérer les commande :
+    categorie : ManyToOne vers categorie (nullable=false).
+    
+3. Créer l'entité DetailsLivraison 
+
+php bin/console make:entity DetailsLivraison
+
+ quantité : decimal (precision=10, scale=2, nullable=false)
+ 
+ Ajoutez les relations :
+
+ 
+ produit : ManyToOne vers Produit (nullable=false).
+ livraison : ManyToOne vers Livraison (nullable=false).
+ 
+    
+    
+
+4. Créer l'entité Produit
+
+php bin/console make:entity Produit
+
+Ajoutez les champs suivants :
+
+    nom : string (length=255, nullable=false)
+    description : text (nullable=true)
+    reference_fournisseur : string (length=50, unique=true, nullable=false)
+    prix : decimal (precision=10, scale=2, nullable=false)
+    image : string (length=255, nullable=true)
+    stock : integer (nullable=false, default=0)
+
+Ajoutez les relations :
+
+    categorie : ManyToOne vers categorie (nullable=false).
+    fournisseur : ManyToOne vers Fournisseur (nullable=false).
+    detailslivraison : OneToMany vers detailslivraison (nullable=false)
+    detailsCommande : OneToMany vers detailsCommande (nullable=false)
+
+5. Créer l'entité Users
+
+php bin/console make:entity Users
+
+Ajoutez les champs suivants :
+
+    role : pour definir et attribuer le permissions
+    nom : string (length=255, nullable=false)
+    prenom : string (length=255, nullable=true)
+    mot de passe : string (length=255, nullable=false)
+    type_client : string (ENUM : Particulier/Professionnel, nullable=false)
+    coefficient : decimal (precision=5, scale=2, nullable=false)
+    adresse : string (nullable=false)
+    ville : string (nullable=false)
+    numerosiret : string (nullable=false)
+    code postal : string (nullable=false)
+    email : string (length=180, unique=true, nullable=false)
+
+Ajoutez la relation :
+     
+    commande : OneToMany vers commande (nullable=false)
+    usersTypes : ManyToOne vers UsersTypes (nullable=false)
+    commercial : ManyToOne vers Commercial (nullable=false).
+    
+6.Userstype   
+
+Ajoutez les champs suivants :
+
+   nom : string (length=255, nullable=false)
+   users : OneToMany vers Users (nullable=false)
+
+
+7. Créer l'entité Commercial
+
+php bin/console make:entity Commercial
+
+Ajoutez les champs suivants :
+
+    nom : string (length=255, nullable=false)
+    prenom : string (length=255, nullable=false)
+    telephone : string (length=15, nullable=true)
+    email : string (length=180, unique=true, nullable=false)
+    
+    
+    Ajoutez la relation :
+  users : OneToMany vers users (nullable=false).
+    
+
+8. Créer l'entité Commande
+
+php bin/console make:entity Commande
+
+Ajoutez les champs suivants :
+    reference : string (nullable=false)
+    reduction : decimal (precision=10, scale=2, default=0, nullable=true)
+    etat_commande : string (ENUM : En cours/Livrée/Annulée, nullable=false)
+    date_facture : datetime (nullable=false)
+    adresse_facture : string (nullable=false)
+    date_livraison : datetime (nullable=false)
+    coefficient : decimal (precision=10, scale=2, default=0, nullable=true)
+    total : decimal (precision=10, scale=2, default=0, nullable=true)
+    date_paiement : datetime (nullable=false)
+    adresse_livraison : string (nullable=false)
+
+
+Ajoutez les relations :
+
+    users : ManyToOne vers Users (nullable=false)
+    methodePaiements :OneToMany vers MethodePaiement (nullable=false)
+    livraison : OneToMany vers livraison (nullable=false)
+    detailsCommandes : OneToMany vers detailscommandes (nullable=false).
+
+9. Créer l'entité DetailsCommande
+
+php bin/console make:entity DetailsCommande
+
+Ajoutez les champs suivants :
+
+    quantite : integer (nullable=false)
+    prix : decimal (precision=10, scale=2, nullable=false)
+
+
+Ajoutez les relations :
+
+    commande : ManyToOne vers Commande (nullable=false).
+    produit : ManyToOne vers Produit (nullable=false).
+
+10. Créer l'entité MethodePaiement
+
+php bin/console make:entity MethodePaiement
+
+Ajoutez les champs suivants :
+
+nom : string (length=255, nullable=false)
+
+Ajoutez la relation :
+
+    commande : OneToOne vers Commande (nullable=false).
+
+11. Créer l'entité categorie
+
+php bin/console make:entity Categorie
+
+Ajoutez les champs suivants :
+
+    date_livraison : datetime (nullable=false)
+    etat_livraison : string (ENUM : En attente/Livré/Partiellement livré, nullable=false)
+
+Ajoutez la relation :
+
+    commande : ManyToOne vers Commande (nullable=false).
+
+Étape 3 : Appliquer les migrations
+
+    Générer les migrations :
+
+php bin/console make:migration
+
+Appliquer les migrations à la base de données :
+
+    php bin/console doctrine:migrations:migrate

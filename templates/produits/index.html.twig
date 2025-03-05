@@ -81,7 +81,7 @@
         <h1 class="text-center mb-4">Liste des Produits</h1>
         <div class="row justify-content-center product-container">
             {% for produit in produits %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center mb-4 product-wrapper">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center mb-4 product-wrapper">
                     <div class="product-card">
                         <img src="{{ asset('uploads/produits/' ~ produit.image) }}" alt="{{ produit.nom }}" class="img-fluid">
                         <h3>{{ produit.nom }}</h3>
