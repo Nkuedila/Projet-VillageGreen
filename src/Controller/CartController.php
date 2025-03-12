@@ -29,8 +29,16 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class CartController extends AbstractController
 {
+
+
     #[Route('/', name: 'index')]
     public function index(SessionInterface $session, ProduitsRepository $produitsRepository)
+    // {
+
+    // }
+
+    // #[Route('/categories', name: 'categories')]
+    // public function categories(SessionInterface $session, ProduitsRepository $produitsRepository)
     {
 
         $panier = $session->get('panier', []);
