@@ -2,28 +2,37 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\SlugTrait;
 use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
+#[ApiResource(normalizationContext: ['groups' => ['read:categories']])]
 class Categories
 {
     use SlugTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:categories'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['read:categories'])]
+
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['read:categories'])]
+
     private ?string $image = null;
 
-  /*    #[ORM\Column]
+    /*    #[ORM\Column]
     private ?int $categoryCommande = null;  */
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
@@ -77,7 +86,7 @@ class Categories
         return $this;
     }
 
-/*     public function getCategoryCommande(): ?int
+    /*     public function getCategoryCommande(): ?int
     {
         return $this->categoryCommande;
     }

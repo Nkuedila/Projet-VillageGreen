@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Categories;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,7 +11,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 
 #[Route('/categories', name: 'categories_')]
-
+#[ApiResource()]
 class CategoriesController extends AbstractController
 {
     #[Route('/slug/{slug}', name: 'list')]

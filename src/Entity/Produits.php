@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Entity\Trait\CreatedAtTrait;
 use App\Entity\Trait\SlugTrait;
 use App\Repository\ProduitsRepository;
@@ -9,8 +10,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
+#[ApiResource(normalizationContext: ['groups' => ['read:produits']])]
+
 class Produits
 {
     use CreatedAtTrait;
@@ -19,9 +24,11 @@ class Produits
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['read:produits'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['read:produits'])]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -38,6 +45,7 @@ class Produits
     private ?string $reference_fournisseur = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read:produits'])]
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
