@@ -29,7 +29,6 @@ class Categories
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Groups(['read:categories'])]
-
     private ?string $image = null;
 
     /*    #[ORM\Column]

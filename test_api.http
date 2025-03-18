@@ -1,2 +1,6 @@
 GET https://127.0.0.1:8000/api/categories
 Accept: application/json
+
+###
+GET https://127.0.0.1:8000/api/produits
+Accept: application/json

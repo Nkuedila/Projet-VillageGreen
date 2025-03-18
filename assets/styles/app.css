@@ -1,3 +1,84 @@
-body {
-    background-color: skyblue;
-}
+      /* Page Background */
+      body {
+        background-color: grey;
+    }
+
+
+  
+
+    /* Section Background */ 
+    main {
+        background-color: grey;
+
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Card Styling */
+    .card {
+        border-left: 4px solid yellowgreen;
+        border-right: 4px solid yellowgreen;
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Image Container */
+    .image-container {
+        height: 220px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .category-image {
+        max-height: 100%;
+        width: auto;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .image-container:hover .category-image {
+        transform: scale(1.1);
+    }
+
+    /* Product Wrapper */
+    .product-wrapper {
+        position: relative;
+        border-left: 3px solid yellowgreen;
+        border-right: 3px solid yellowgreen;
+        border-bottom: 3px solid black;
+        border-top: 3px solid black;
+        border-radius: 12px;
+        background-color: #ffffff;
+        padding: 15px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease-in-out;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+
+
+        
+        
+
+
+    }
+
+    .product-wrapper:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .image-container {
+            height: 180px;
+        }
+    }

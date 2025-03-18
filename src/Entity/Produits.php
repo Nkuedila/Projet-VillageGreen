@@ -32,9 +32,13 @@ class Produits
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['read:produits'])]
+
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Groups(['read:produits'])]
+
     private ?int $prix = null;
 
     #[ORM\Column]
