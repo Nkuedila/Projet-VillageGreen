@@ -24,11 +24,11 @@ class Produits
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:produits'])]
+    #[Groups(['read:produits', 'read:category'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['read:produits'])]
+    #[Groups(['read:produits', 'read:category'])]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -49,7 +49,7 @@ class Produits
     private ?string $reference_fournisseur = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:produits'])]
+    #[Groups(['read:produits', 'read:category'])]
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]

@@ -12,23 +12,23 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
-#[ApiResource(normalizationContext: ['groups' => ['read:categories']])]
+#[ApiResource(normalizationContext: ['groups' => ['read:category']])]
 class Categories
 {
     use SlugTrait;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:categories'])]
+    #[Groups(['read:category', 'read:produits'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['read:categories'])]
+    #[Groups(['read:category', 'read:produits'])]
 
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['read:categories'])]
+    #[Groups(['read:category', 'read:produits'])]
     private ?string $image = null;
 
     /*    #[ORM\Column]
@@ -36,6 +36,8 @@ class Categories
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[Groups(['read:category'])]
+
     private ?self $parent = null;
 
     /**
