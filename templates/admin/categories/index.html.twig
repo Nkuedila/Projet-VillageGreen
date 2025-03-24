@@ -5,14 +5,15 @@
 {% block body %}
     <div class="container">
     <div class="row">
-        {% include "_partials/_adminnav.html.twig"  %} 
-        <main class="col-9 border border-light bg-white p-2">
+{#         {% include "_partials/_adminnav.html.twig"  %} 
+ #}        {# <main class="col-9 border border-light bg-white p-2"> #}
            <h1>Liste des catégories</h1>
            <table class="table">
            <thead>
              <tr>
               <th>ID</th>
               <th>Nom</th>
+              <th>image</th>
               <th>Parent</th>
               <th>Slug</th>
               <th>Commande</th>
@@ -31,17 +32,17 @@
                     <td>{{ categorie.nom }}</td>
                     <td>
                         {% if categorie.parent is not null %}
-                            {{ categorie.parent.nom }}
-                        {% endif %}
+                             {{ categorie.parent.nom }}
+                       {% endif %}
                     </td>
                     <td>{{ categorie.slug }}</td>
-                    <td>{{ categorie.categoryCommande }}</td>
-                   
+{#                     <td>{{ categorie.categoryCommande }}</td>
+ #}                   
                 </tr>
             {% endfor %}
         </tbody>
         </table>
-        </main>
-    </div>
+{#         </main>
+ #}    </div>
     </div>
     {% endblock %}

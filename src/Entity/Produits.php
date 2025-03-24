@@ -14,7 +14,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
-#[ApiResource(normalizationContext: ['groups' => ['read:produits']])]
+#[ApiResource(normalizationContext: ['groups' => ['read:produit']])]
 
 class Produits
 {
@@ -24,36 +24,37 @@ class Produits
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:produits', 'read:category'])]
+    #[Groups(['read:produit', 'read:category'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['read:produits', 'read:category'])]
+    #[Groups(['read:produit', 'read:category'])]
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['read:produits'])]
-
+    #[Groups(['read:produit'])]
     private ?string $description = null;
 
     #[ORM\Column]
-    #[Groups(['read:produits'])]
-
+    #[Groups(['read:produit'])]
     private ?int $prix = null;
 
     #[ORM\Column]
+    #[Groups(['read:produit',])]
     private ?int $stock = null;
 
 
     #[ORM\Column(length: 100)]
+    #[Groups(['read:produit',])]
     private ?string $reference_fournisseur = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:produits', 'read:category'])]
+    #[Groups(['read:produit',])]
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['read:produit',])]
     private ?Categories $categories = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]

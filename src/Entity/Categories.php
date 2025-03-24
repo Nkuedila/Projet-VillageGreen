@@ -19,16 +19,15 @@ class Categories
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['read:category', 'read:produits'])]
+    #[Groups(['read:category', 'read:produit'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['read:category', 'read:produits'])]
-
+    #[Groups(['read:category', 'read:produit'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Groups(['read:category', 'read:produits'])]
+    #[Groups(['read:category', 'read:produit'])]
     private ?string $image = null;
 
     /*    #[ORM\Column]
@@ -44,12 +43,14 @@ class Categories
      * @var Collection<int, self>
      */
     #[ORM\OneToMany(targetEntity: Categories::class, mappedBy: 'parent')]
+    #[Groups(['read:category'])]
     private Collection $categories;
 
     /**
      * @var Collection<int, Produits>
      */
     #[ORM\OneToMany(targetEntity: Produits::class, mappedBy: 'categories')]
+    #[Groups(['read:category'])]
     private Collection $produits;
 
     public function __construct()

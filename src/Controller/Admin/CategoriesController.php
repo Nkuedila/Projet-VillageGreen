@@ -13,7 +13,7 @@ class CategoriesController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(CategoriesRepository $categoriesRepository): Response
     {
-        $categories = $categoriesRepository->findBy([], ['categoryCommande' => 'asc']);
+        $categories = $categoriesRepository->findBy([]);
 
         return $this->render('admin/categories/index.html.twig', compact('categories'));
     }
