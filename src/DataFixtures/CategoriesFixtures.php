@@ -18,66 +18,66 @@ class CategoriesFixtures extends Fixture
     {
         // Création de la catégorie parente
 
-        $parent = $this->createCategory('Guitares & Bases', 'guitarEtBasse.jpg', null, $manager);
+        $parent = $this->createCategory('Guitares & Bases', 'guitarEtBasse.jpg', 'c1', null, $manager);
 
 
         // Sous-catégories associées à la catégorie parente
-        $this->createCategory('Basses Acoustiques/semi Acoustiques', 'basseA.jpg', $parent, $manager);
-        $this->createCategory('Guitares Clasiques', 'guitarClass.jpg', $parent, $manager);
-        $this->createCategory('Guitares Acoustiques & Electro-Acoustique', 'guitarAcouElec.jpg', $parent, $manager);
-        $this->createCategory('Basses Electriques', 'baselec.jpg', $parent, $manager);
+        $this->createCategory('Basses Acoustiques/semi Acoustiques', 'basseA.jpg', 'category_guitar1', $parent, $manager);
+        $this->createCategory('Guitares Clasiques', 'guitarClass.jpg', 'category_guitar2', $parent, $manager);
+        $this->createCategory('Guitares Acoustiques & Electro-Acoustique', 'guitarAcouElec.jpg', 'category_guitar3',  $parent, $manager);
+        $this->createCategory('Basses Electriques', 'baselec.jpg', 'category_guitar4',  $parent, $manager);
 
 
 
 
-        $parent = $this->createCategory('Batteries & Percussions', 'Batteriespercussions.jpg', null, $manager);
-
-
-        // Sous-catégories associées à la catégorie parente
-
-        $this->createCategory('Percussions Classiques', 'percussionsclassiques.jpg', $parent, $manager);
-        $this->createCategory('Batteries Electroniques', 'batterieselectroniques.jpg', $parent, $manager);
-        $this->createCategory('Percussions', 'percussions.jpg', $parent, $manager);
-        $this->createCategory('Percussions de Défilé ', 'percussionsdéfilé.jpg', $parent, $manager);
-
-
-
-        $parent = $this->createCategory('Pianos & Clavier', 'pianoetclavier.jpg', null, $manager);
+        $parent = $this->createCategory('Batteries & Percussions', 'Batteriespercussions.jpg', 'c2', null, $manager);
 
 
         // Sous-catégories associées à la catégorie parente
 
-        $this->createCategory('Orgues Liturgiques', 'orgueliturgies.jpg', $parent, $manager);
-        $this->createCategory('Orgues Electroniques', 'orgueselectroniques.jpg', $parent, $manager);
-        $this->createCategory('Pianos Droits', 'pianosdroits.jpg', $parent, $manager);
-        $this->createCategory('Accordéons', 'accordéons.jpg', $parent, $manager);
+        $this->createCategory('Percussions Classiques', 'percussionsclassiques.jpg', 'category_bettery1',  $parent, $manager);
+        $this->createCategory('Batteries Electroniques', 'batterieselectroniques.jpg', 'category_bettery2',  $parent, $manager);
+        $this->createCategory('Percussions', 'percussions.jpg', 'category_bettery3', $parent, $manager);
+        $this->createCategory('Percussions de Défilé ', 'percussionsdéfilé.jpg', 'category_bettery4',  $parent, $manager);
 
 
 
-        $parent = $this->createCategory('Instruments Traditionnels', 'instrumentstraditionnels.jpg', null, $manager);
+        $parent = $this->createCategory('Pianos & Clavier', 'pianoetclavier.jpg', 'c3', null, $manager);
 
 
         // Sous-catégories associées à la catégorie parente
 
-        $this->createCategory('Instruments à Cordes Frottées', 'cordefrotté.jpg', $parent, $manager);
-        $this->createCategory('Instruments de Folklore', 'folk.jpg', $parent, $manager);
-        $this->createCategory('Méditations & Thérapie Musicale', 'meditation.jpg', $parent, $manager);
+        $this->createCategory('Orgues Liturgiques', 'orgueliturgies.jpg', 'category_piano1', $parent, $manager);
+        $this->createCategory('Orgues Electroniques', 'orgueselectroniques.jpg', 'category_piano2', $parent, $manager);
+        $this->createCategory('Pianos Droits', 'pianosdroits.jpg', 'category_piano3', $parent, $manager);
+        $this->createCategory('Accordéons', 'accordéons.jpg', 'category_piano4', $parent, $manager);
 
 
 
+        $parent = $this->createCategory('Instruments Traditionnels', 'instrumentstraditionnels.jpg', 'c4', null, $manager);
 
-
-
-        $parent = $this->createCategory('Instruments à Vent', 'instrumentvent.jpg', null, $manager);
 
         // Sous-catégories associées à la catégorie parente
 
-        $this->createCategory('Clarinettes', 'clarinette.jpg', $parent, $manager);
-        $this->createCategory('Trompettes', 'trompette.jpg', $parent, $manager);
-        $this->createCategory('Trombones', 'trombone.jpg', $parent, $manager);
-        $this->createCategory('Cors D\'Harmonie', 'corsHarmonie.jpg', $parent, $manager);
-        $this->createCategory('Tuba', 'tuba.jpg', $parent, $manager);
-        $this->createCategory('Flûtes Traversieres', 'flutestraversiere.jpg', $parent, $manager);
+        $this->createCategory('Instruments à Cordes Frottées', 'cordefrotté.jpg', 'category_traditionnel1', $parent, $manager);
+        $this->createCategory('Instruments de Folklore', 'folk.jpg', 'category_traditionnel2', $parent, $manager);
+        $this->createCategory('Méditations & Thérapie Musicale', 'meditation.jpg', 'category_traditionnel3', $parent, $manager);
+
+
+
+
+
+
+        $parent = $this->createCategory('Instruments à Vent', 'instrumentvent.jpg', 'c5', null, $manager);
+
+        // Sous-catégories associées à la catégorie parente
+
+        $this->createCategory('Clarinettes', 'clarinette.jpg', 'category_vent1', $parent, $manager);
+        $this->createCategory('Trompettes', 'trompette.jpg', 'category_vent2', $parent, $manager);
+        $this->createCategory('Trombones', 'trombone.jpg', 'category_vent3', $parent, $manager);
+        $this->createCategory('Cors D\'Harmonie', 'corsHarmonie.jpg', 'category_vent4', $parent, $manager);
+        $this->createCategory('Tuba', 'tuba.jpg', 'category_vent5', $parent, $manager);
+        $this->createCategory('Flûtes Traversieres', 'flutestraversiere.jpg', 'category_vent6', $parent, $manager);
 
 
 
@@ -87,7 +87,7 @@ class CategoriesFixtures extends Fixture
     /**
      * Crée une catégorie avec un nom, une photo et un parent facultatif
      */
-    public function createCategory(string $nom, string $image, ?Categories $parent, ObjectManager $manager): Categories
+    public function createCategory(string $nom, string $image, string $reference, ?Categories $parent, ObjectManager $manager): Categories
     {
         $category = new Categories();
         $category->setNom($nom);
@@ -97,7 +97,7 @@ class CategoriesFixtures extends Fixture
 
         $manager->persist($category);
 
-        $this->addReference('cat-' . $this->counter, $category);
+        $this->addReference($reference, $category);
         $this->counter++;
 
 
