@@ -77,7 +77,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container py-4">
+    <div class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
         <h1 class="text-center mb-4">Liste des Produits</h1>
         <div class="row justify-content-center product-container">
             {% for category in categories %}

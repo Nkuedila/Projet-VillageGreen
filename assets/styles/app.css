@@ -1,7 +1,7 @@
       /* Page Background */
       body {
-          background-color: #0FA4Af;
-
+/*            background-color: #0FA4Af;
+ */ 
       }
     
 
@@ -17,8 +17,8 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background:  #0FA4Af;
-        font-family: Arial, sans-serif;
+/*         background:  #0FA4Af;
+ */        font-family: Arial, sans-serif;
     }
     .neumorphic {
         background:#d2d8e7;
@@ -73,12 +73,12 @@
 
       /* Section Background */
       main {
-          background-color:  #0FA4Af;
-
-          border-radius: 12px;
-          padding: 30px;
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
+/*           background-color:  #0FA4Af;
+ */ 
+/*           border-radius: 12px;
+ */          padding: 30px;
+/*           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+ */      }
 
       /* Card Styling */
       .card {

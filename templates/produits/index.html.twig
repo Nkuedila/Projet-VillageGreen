@@ -6,6 +6,7 @@
     <style>
         .product-container {
             display: flex;
+            
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
@@ -77,11 +78,13 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container py-4">
-        <h1 class="text-center mb-4">Liste des Produits</h1>
+    <div class=class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
+        <h1 class="text-center mb-4 text-primary fw-bold">Liste des Produits</h1>
         <div class="row justify-content-center product-container">
+            <div class="row g-5 mt-2">
             {% for produit in produits %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex justify-content-center mb-4 product-wrapper">
+                    
                     <div class="product-card">
                         <img src="{{ asset('uploads/produits/' ~ produit.image) }}" alt="{{ produit.nom }}" class="img-fluid">
                         <h3>{{ produit.nom }}</h3>
@@ -92,6 +95,7 @@
             {% else %}
                 <p class="text-center">Aucun produit disponible pour le moment.</p>
             {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

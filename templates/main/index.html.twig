@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<main class="container mt-5">
+<main class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
     <section class="row text-center">
         <div class="col-12 mb-4">
           <h1 class="display-4 text-primary fw-bold">Bienvenue dans notre site village green</h1>
-         <p class="lead">Découvrez notre incroyable sélection de produits</p>
+         <p class="lead text-primary fw-bold">Découvrez notre incroyable sélection de produits </p>
    </div>
 
         {% for category in categories %}
