@@ -101,7 +101,7 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
             ['Orgues Liturgiques 1 Clavier ', 'orgue de qualité supérieure.', 150000, 20, 'OrguesLiturgiques1.jpg', 'category_piano1', 'fournisseur_3'],
             ['Orgues Liturgiques 2 Clavier ', 'orgue de qualité supérieure.', 150000, 20, 'OrguesLiturgiques2.jpg', 'category_piano1', 'fournisseur_3'],
             ['Orgues Liturgiques 3 Clavier ', 'orgue de qualité supérieure.', 150000, 20, 'OrguesLiturgiques3.jpg', 'category_piano1', 'fournisseur_3'],
-            ['Orgues Liturgiques Simple ', 'orgue de qualité supérieure.', 150000, 20, 'OrguesLiturgiques.jpg4', 'category_piano1', 'fournisseur_3'],
+            ['Orgues Liturgiques Simple ', 'orgue de qualité supérieure.', 150000, 20, 'OrguesLiturgiques4.jpg', 'category_piano1', 'fournisseur_3'],
             ['Accessoires pour Orgues Liturgiques ', 'accessoires de qualité supérieure.', 150000, 20, 'OrguesLiturgiques5.jpg', 'category_piano1', 'fournisseur_3'],
 
 
