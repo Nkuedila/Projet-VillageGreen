@@ -1,19 +1,25 @@
 
-<nav class="navbar navbar-expand-lg" style=""background-image: url('{{ asset('uploads/bga.jpg') }}')": " style="height: 200px";background-image: url('uploads/bg7.jpg'); background-size: cover;>   
+<nav class="navbar navbar-expand-lg " style="background-image: url('{{ asset("uploads/logo1.jpg") }}') !important;    height: 200px;
+">   
+
  <div class="container-fluid">
-      <a class="navbar-brand" href="{{ path('main') }}">Accueil</a>
+  <li class="nav-item">
+  <a class="navbar-brand" href="{{ path('main') }}">
+  <img src="{{ asset('uploads/logo.jpg') }}" alt="" height="150px"></a>
+  </li>
+      <a class="navbar-brand" href="{{ path('main') }}" >Accueil</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">      
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path('sous_categories_list') }} ">Categories</a>
+            <a class="navbar-brand active" aria-current="page" href="{{ path('sous_categories_list') }} ">Categories</a>
           </li>
 {#           <a href="{{ path('sous_categories', {id: category.id}) }}">
  #}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ path('produits_index') }}">Produits</a>
+              <a class="navbar-brand active" aria-current="page" href="{{ path('produits_index') }}">Produits</a>
             </li>
 
 
@@ -48,14 +54,14 @@
               <a class="nav-link active" aria-current="page" href="#">Mon compte</a>
             </li> #}
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ path('app_logout') }}">Me déconnecter</a>
+              <a class="navbar-brand active" aria-current="page" href="{{ path('app_logout') }}">Me déconnecter</a>
             </li>
          {% else %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path('app_register') }}">M'inscrire</a>
+            <a class="navbar-brand active" aria-current="page" href="{{ path('app_register') }}">M'inscrire</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ path('app_login') }}">Me connecter</a>
+            <a class="navbar-brand active" aria-current="page" href="{{ path('app_login') }}">Me connecter</a>
           </li>
           {% endif %}
         </ul>
@@ -64,7 +70,7 @@
     </div>
     <Ul>
 <li class="nav-item">
-  <a class="nav-link" style="color: red; text-decoration: none;" href="{{ path('cart_index') }}">🛒 Panier</a>
+  <a class="navbar-brand" style="color: whit; text-decoration: none;" href="{{ path('cart_index') }}">🛒 Panier</a>
 </li>
     </Ul>
   </nav>
