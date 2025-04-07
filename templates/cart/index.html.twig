@@ -3,9 +3,10 @@
 
 {% block body %}
 
-    <main class="container">
-     <section class="neumorphic neumorphic-card">
-        <div class="col-12">
+    <main class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
+     <section class="container_1 my-3">
+        <div class="neumorphic neumorphic-card">
+        <div class=" col-12 ">
             <h1>Panier</h1>  
             <table class="table">
                 <thead>
@@ -51,10 +52,11 @@
                 <a href="{{ path('cart_checkout') }}" class="btn btn-primary">Commander</a>
             {% endif %}
                     
-                    </div>
+        </div>        
         
-    
+            </section>
               
+        </main>
 
 
 {% endblock %}
