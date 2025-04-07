@@ -1,28 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Finaliser la commande</h1>
+    <main class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
+    <section class="container_1 my-3">
+     <div class="neumorphic neumorphic-card">
+
+
+
+    <h1 class="display-4 text-primary fw-bold">Finaliser la commande</h1>
 
     <form id="checkout-form">
         <div class="mb-3">
-            <label for="adresse_facture" class="form-label">Adresse de facturation</label>
+            <label for="adresse_facture" class="form-label text-primary fw-bold">Adresse de facturation</label>
             <input type="text" id="adresse_facture" name="adresse_facture" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label for="adresse_livraison" class="form-label">Adresse de livraison</label>
+            <label for="adresse_livraison" class="form-label text-primary fw-bold">Adresse de livraison</label>
             <input type="text" id="adresse_livraison" name="adresse_livraison" class="form-control" required>
         </div>
 
         {% if user is not null and user.numeroSiret is not null %}
             <div class="mb-3">
-                <label for="numero_siret" class="form-label">Numéro SIRET</label>
+                <label for="numero_siret" class="form-label text-primary fw-bold">Numéro SIRET</label>
                 <input type="text" id="numero_siret" name="numero_siret" class="form-control" value="{{ user.numeroSiret }}" readonly>
             </div>
         {% endif %}
 
         <button type="button" id="checkout-button" class="btn btn-primary">Payer avec Stripe</button>
     </form>
+</div>
+</section>
+
+</main>
+
 
     <script src="https://js.stripe.com/v3/"></script>
     <script>

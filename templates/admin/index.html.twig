@@ -3,12 +3,16 @@
 {% block title %}Administration{% endblock %}
 
 {% block body %}
+<main class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
+    <section class="container_1 my-3">
+
+    
     <div class="container">
     <div class="row">
         {% include "_partials/_adminnav.html.twig"  %} 
-        <main class="col-9 border border-light bg-white p-2">
+        <div class="col-9 border border-light bg-white p-2">
            <h1>Administration</h1>
-        </main>
+        </div>
     </div>
     </div>
     {# aside class="custom-sidebar">
@@ -117,4 +121,6 @@
     }
 </style>
  #}
+
+</main>
 {% endblock %}
