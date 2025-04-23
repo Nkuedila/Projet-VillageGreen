@@ -26,15 +26,15 @@ class RegistrationFormType extends AbstractType
             ->add('prenom', TextType::class, ['attr' => ['class' => 'form-control'], 'label' => 'Prénom'])
             ->add('adresse', TextType::class, ['attr' => ['class' => 'form-control'], 'label' => 'Adresse'])
             ->add('codepostal', TextType::class, ['attr' => ['class' => 'form-control'], 'label' => 'Code Postal'])
-            ->add('ville', TextType::class, ['attr' => ['class' => 'form-control'], 'label' => 'Ville'])
-            ->add('userstype', EntityType::class, [
+            ->add('ville', TextType::class, ['attr' => ['class' => 'form-control'], 'label' => 'Ville']);
+        /*   ->add('userstype', EntityType::class, [
                 'class' => UsersType::class,
                 'choice_label' => 'nom',
                 'placeholder' => 'Sélectionnez un type de compte',
                 'attr' => ['class' => 'form-control'],
                 'label' => 'Type de compte'
             ])
-            ->add('numeroSiret');
+            ->add('numeroSiret'); */
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $user = $event->getData();

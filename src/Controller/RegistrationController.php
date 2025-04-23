@@ -48,13 +48,13 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // on envoie le mail 
-            $mail->send(
+            /* $mail->send(
                 'no-replay@monsite.net',
                 $user->getEmail(),
                 'Inscription de votre compte sur le site Village Green',
                 'register',
                 compact('user')
-            );
+            ); */
 
 
 

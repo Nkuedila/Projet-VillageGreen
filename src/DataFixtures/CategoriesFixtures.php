@@ -81,6 +81,23 @@ class CategoriesFixtures extends Fixture
 
 
 
+
+
+        $parent = $this->createCategory('Studio', 'studio.jpg', 'c6', null, $manager);
+
+        // Sous-catégories associées à la catégorie parente
+
+        $this->createCategory('microphone', 'microphone.jpg', 'category_studio1', $parent, $manager);
+        $this->createCategory('Enceintes de Monitoring ', 'monitoring.jpg', 'category_studio2', $parent, $manager);
+        $this->createCategory('Controleur', 'controleur.jpg', 'category_studio3', $parent, $manager);
+        $this->createCategory('Interface Audio', 'interface.jpg', 'category_studio4', $parent, $manager);
+        $this->createCategory('Casque', 'casque.jpg', 'category_studio5', $parent, $manager);
+
+
+
+
+
+
         $manager->flush();
     }
 

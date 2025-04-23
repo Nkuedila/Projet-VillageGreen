@@ -9,15 +9,15 @@ use App\Entity\Commande;
 use App\Entity\DetailsCommande;
 use App\Entity\DetailsLivraison;
 use App\Entity\Livraison;
-use App\Entity\MethodePaiement;
+use App\Entity\MethodePaiement as EntityMethodePaiement;
 use App\Entity\Produits;
 use App\Entity\Users;
 use App\Repository\ProduitsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Stripe\MethodePaiement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
-/* use Symfony\Component\HttpFoundation\Request;
- */
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Mailer\MailerInterface;
@@ -183,20 +183,26 @@ class CartController extends AbstractController
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
         $lineItems = [];
 
+        // ✅ Apply discount for users with a SIRET number
+        $reduction = ($user->getNumeroSiret() !== null) ? 0.50 : 0.0;
+
         foreach ($panier as $id => $quantite) {
             $produit = $produitsRepository->find($id);
             if ($produit) {
+                // 💲 Apply discount if eligible
+                $prixReduit = $produit->getPrix() * (1 - $reduction);
                 $lineItems[] = [
                     'price_data' => [
                         'currency' => 'eur',
                         'product_data' => ['name' => $produit->getNom()],
-                        'unit_amount' => $produit->getPrix(), // ✅ Convert to cents
+                        'unit_amount' => intval($prixReduit), // ✅ Convert to cents
                     ],
                     'quantity' => $quantite,
                 ];
             }
         }
 
+        // creet la session Stripe checkout 
         $checkoutSession = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => $lineItems,
@@ -208,7 +214,7 @@ class CartController extends AbstractController
         return new JsonResponse(['id' => $checkoutSession->id]);
     }
 
-    // Pour Commande 
+    // Pour la Commande 
 
     #[Route('/commande', name: 'commande')]
     public function createCommande(
@@ -264,9 +270,9 @@ class CartController extends AbstractController
         $commande->setAdresseLivraison($user->getAdresse() ?? 'Adresse non spécifiée');
         $commande->setdatePaiement(new \DateTime());
         $commande->setCoefficient(1.0);
-        $commande->setTotal($total);
-        $commande->setReduction(0); // ✅ Correctif : assurez-vous que la « réduction » est toujours définie
-        // ✅ Définir le total avant de persister
+        $commande->setReduction($reduction); // ✅ Correctif : assurez-vous que la « réduction » est toujours définie
+        $commande->setTotal($total); // ✅ Définir le total avant de persister
+
         $entityManager->persist($commande);
 
         foreach ($panier as $id => $quantite) {
@@ -297,6 +303,8 @@ class CartController extends AbstractController
                 $DetailsLivraison->setQuantite($quantite);
                 $DetailsLivraison->setLivraison($Livraison);
 
+                $Livraison->addDetailsLivraison($DetailsLivraison); // Ajoutez LivraisonDetails à Livraison (méthode à définir si nécessaire)
+
                 $entityManager->persist($Livraison);
                 $entityManager->persist($DetailsLivraison);
             }
@@ -304,9 +312,9 @@ class CartController extends AbstractController
 
         // le PAIEMENT
 
-        $MethodePaiement = new MethodePaiement();
+        $MethodePaiement = new EntityMethodePaiement();
         $MethodePaiement->setCommande($commande);
-        $MethodePaiement->setNom('Stripe');
+        $MethodePaiement->setNom("Stripe");
 
 
         $entityManager->persist($MethodePaiement);
@@ -328,7 +336,12 @@ class CartController extends AbstractController
             ->html($this->renderView('emails/commande_confirmation.html.twig', [
                 'user' => $user,
                 'commande' => $commande,
+                'Livraison' => $Livraison,
+                'DetailsLivraison' => $DetailsLivraison,
+                'MethodePaiement' => $MethodePaiement,
                 'panier' => $panier,
+
+
             ]));
 
         $mailer->send($email);

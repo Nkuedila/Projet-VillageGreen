@@ -23,7 +23,7 @@ class SendMailService
     ): void
     {
         //On crée le mail
-        $email = (new TemplatedEmail())
+     /*    $email = (new TemplatedEmail())
             ->from($from)
             ->to($to)
             ->subject($subject)
@@ -31,6 +31,6 @@ class SendMailService
             ->context($context);
 
         // On envoie le mail
-        $this->mailer->send($email);
+        $this->mailer->send($email); */
     }
 }

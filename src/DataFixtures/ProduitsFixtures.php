@@ -219,7 +219,7 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
             ['Tuba en Fa', 'de qualité supérieure.', 45000, 20, 'Tuba2.jpg', 'category_vent5', 'fournisseur_3'],
             ['Tuba en Mib', 'de qualité supérieure.', 41000, 20, 'Tuba3.jpg', 'category_vent5', 'fournisseur_3'],
             ['Tubas en Ut', 'de qualité supérieure.', 457000, 20, 'Tuba4.jpg', 'category_vent5', 'fournisseur_3'],
-            ['Sousaphone', 'de qualité supérieure.', 4570000, 20, 'Tuba5.jpg', 'category_vent5', 'fournisseur_3'],
+            ['Sousaphone', 'de qualité supérieure.', 457000, 20, 'Tuba5.jpg', 'category_vent5', 'fournisseur_3'],
 
 
 
@@ -232,6 +232,55 @@ class ProduitsFixtures extends Fixture implements DependentFixtureInterface
             ['Flûtes Traversières Altos & Basses', 'de qualité supérieure.', 41000, 20, 'FlûtesTraversieres3.jpg', 'category_vent6', 'fournisseur_1'],
             ['Flûtes Traversières Piccolos ', 'de qualité supérieure.', 57000, 20, 'FlûtesTraversieres4.jpg', 'category_vent6', 'fournisseur_1'],
             ['Flûtes Traversières en Bois ', 'de qualité supérieure.', 70000, 20, 'FlûtesTraversieres5.jpg', 'category_vent6', 'fournisseur_1'],
+
+
+
+            //microphone
+            ['Microphone à condensateur large ', 'de qualité supérieure.', 40000, 20, 'micro1.jpg', 'category_studio1', 'fournisseur_1'],
+            ['Microphone à condensateur petite membrane ', 'de qualité supérieure.', 30000, 20, 'micro2.jpg', 'category_studio1', 'fournisseur_1'],
+            ['Microphone Stéréo ', 'de qualité supérieure.', 50000, 20, 'micro3.jpg', 'category_studio1', 'fournisseur_1'],
+            ['Microphone pour Instrument ', 'de qualité supérieure.', 45000, 20, 'micro4.jpg', 'category_studio1', 'fournisseur_1'],
+            ['Microphone à Ruban', 'de qualité supérieure.', 35000, 20, 'micro5.jpg', 'category_studio1', 'fournisseur_1'],
+
+
+            //Enceintes de Monitoring 
+            ['Enceintes de Proximité Active ', 'de qualité supérieure.', 95000, 20, 'monitoring1.jpg', 'category_studio2', 'fournisseur_2'],
+            ['Enceintes de Proximité Passives ', 'de qualité supérieure.', 90000, 20, 'monitoring2.jpg', 'category_studio2', 'fournisseur_2'],
+            ['Enceintes de Moyenne Distance ', 'de qualité supérieure.', 11100, 20, 'monitoring3.jpg', 'category_studio2', 'fournisseur_2'],
+            ['Caissons de Basse ', 'de qualité supérieure.', 32000, 20, 'monitoring4.jpg', 'category_studio2', 'fournisseur_2'],
+            ['Système 2.1 ', 'de qualité supérieure.', 22000, 20, 'monitoring5.jpg', 'category_studio2', 'fournisseur_2'],
+
+
+            //controleur
+            [' Contrôleurs DAW', 'de qualité supérieure.', 15000, 20, 'controleur1.jpg', 'category_studio3', 'fournisseur_3'],
+            [' Contrôleurs Vidéo', 'de qualité supérieure.', 10600, 20, 'controleur2.jpg', 'category_studio3', 'fournisseur_3'],
+            [' Autre Controleurs', 'de qualité supérieure.', 17000, 20, 'controleur3.jpg', 'category_studio3', 'fournisseur_3'],
+            [' Nave Instrument', 'de qualité supérieure.', 18000, 20, 'controleur4.jpg', 'category_studio3', 'fournisseur_3'],
+            [' Contrôleurs DAW', 'de qualité supérieure.', 19000, 20, 'controleur5.jpg', 'category_studio3', 'fournisseur_3'],
+
+
+            //Interface Audio
+            [' Interfaces Audio USB', 'de qualité supérieure.', 15000, 20, 'interface1.jpg', 'category_studio4', 'fournisseur_4'],
+            [' Interfaces Audio FireWire ', 'de qualité supérieure.', 16000, 20, 'interface2.jpg', 'category_studio4', 'fournisseur_4'],
+            [' Interfaces ethernet ', 'de qualité supérieure.', 17000, 20, 'interface3.jpg', 'category_studio4', 'fournisseur_4'],
+            ['  Interfaces Audio Thunderbolt ', 'de qualité supérieure.', 18000, 20, 'interface4.jpg', 'category_studio4', 'fournisseur_4'],
+            [' RME Fireface UFX III', 'de qualité supérieure.', 19000, 20, 'interface5.jpg', 'category_studio4', 'fournisseur_4'],
+
+
+            //casque
+            [' Casques Studio', 'de qualité supérieure.', 14000, 20, 'casque1.jpg', 'category_studio5', 'fournisseur_4'],
+            [' Casques Hi-Fi', 'de qualité supérieure.', 15000, 20, 'casque2.jpg', 'category_studio5', 'fournisseur_4'],
+            [' Sennheiser HD 550', 'de qualité supérieure.', 12000, 20, 'casque3.jpg', 'category_studio5', 'fournisseur_4'],
+            [' Positive Grid Spark Neo', 'de qualité supérieure.', 15000, 20, 'casque4.jpg', 'category_studio5', 'fournisseur_4'],
+            [' Beyerdynamic', 'de qualité supérieure.', 23900, 20, 'casque5.jpg', 'category_studio5', 'fournisseur_4'],
+
+
+
+
+
+
+
+
 
 
 

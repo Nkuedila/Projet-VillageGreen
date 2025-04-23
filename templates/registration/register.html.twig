@@ -23,11 +23,11 @@
                     {{ form_row(registrationForm.adresse) }}
                     {{ form_row(registrationForm.codepostal) }}
                     {{ form_row(registrationForm.ville) }}
-                    {{ form_row(registrationForm.userstype) }}
-                     <!--Numero SIRET (hidden unless user is "professionnel") -->
+{#                     {{ form_row(registrationForm.userstype) }}
+ #}                     <!--Numero SIRET (hidden unless user is "professionnel") -->
                 <div id="numeroSiretField" style="display: none;">
-                    {{ form_row(registrationForm.numeroSiret) }}
-                </div>
+{#                     {{ form_row(registrationForm.numeroSiret) }}
+ #}                </div>
                 </fieldset>    
 
                 {{ form_row(registrationForm.password) }}
@@ -41,9 +41,9 @@
         </div>
     </div>
 </section>
-</main>
+</main
 
-<script>
+{# <script>
 document.addEventListener('DOMContentLoaded', function () {
     let userstypeField = document.querySelector('[name="registration_form[userstype]"]');
     let numeroSiretField = document.getElementById('numeroSiretField');
@@ -65,6 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
     // Run when user changes selection
     userstypeField.addEventListener('change', toggleNumeroSiret);
 });
-</script>
+</script> #}
 
 {% endblock %}

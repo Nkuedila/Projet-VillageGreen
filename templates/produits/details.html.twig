@@ -16,6 +16,7 @@
                 <p> {{ produit.description }} </p>
                <p>Catégorie : {{ produit.categories.nom}} </p>
                <p>Prix : {{ produit.prix / 100 }} € </p>
+               <p>Stock: {{ produit.stock }}
                {% if produit.stock > 0 %}
                    <a href=" {{ path('cart_add', {id: produit.id}) }} " class="btn btn-success">Ajouter au panier</a>
                    
