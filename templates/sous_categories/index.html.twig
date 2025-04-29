@@ -5,7 +5,7 @@
 {% endblock %}
  #}
 {% block body %}
-    <main class="background-cotainer" style="background-image: url('{{ asset('uploads/bgb.jpeg') }}')">
+    <main class="background-cotainer" style="background-image: url('{{ asset('uploads/ali2.jpg') }}')">
         <section class="row text-center">
             <div class="col-12 mb-4">
                 <h1 class="mb-5  text-primary fw-bold">{{ category.nom }}</h1>
@@ -14,7 +14,7 @@
 
                  {% for c in category.categories %}
                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex justify-content-center mb-4 product-wrapper">
-                        <div class="card shadow-lg border-0">
+                        <div class="sous-categorie card shadow-lg border-0">
                             <div class="image-container overflow-hidden">
                              <a href="{{ path('categories_list', {slug: c.slug}) }}">
                                  <img src="{{ asset('uploads/categories/sous/' ~ c.image) }}" alt="{{ c.nom }}" style="width: 200px;" />

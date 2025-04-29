@@ -94,6 +94,12 @@
             "php bin/console d:d:c",
             "php bin/console d:s:u --force ",
             "php bin/console d:f:l --append"
+        ],
+        "tests": [
+            "php bin/console d:d:d --force --env=test", 
+            "php bin/console d:d:c --env=test",
+            "php bin/console d:s:u --force  --env=test",
+            "php bin/console d:f:l --append --env=test"
         ]
     },
     "conflict": {
